@@ -7,7 +7,7 @@ class Swipe extends Component {
     render() {
         return (
             <View>
-                <Text>Hey, there!</Text>
+                <Text>Swipe Data</Text>
             </View>
         );
     }
