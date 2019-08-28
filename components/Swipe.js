@@ -5,22 +5,24 @@ import { Card } from 'react-native-elements';
 class Swipe extends Component {
     renderCardItem = (profile, i) => {
         return (
-            <Card title={profile.name} titleStyle={{ fontSize: 14 }} key={i}>
-                <View style={{ height: 200 }}>
-                    {/* <View style={styles.detailWrapper}> */}
+            <Card title={profile.name} style={{ fontSize: 30 }} titleStyle={{ fontSize: 25 }} key={i}>
+                <View style={{ height: 315 }}>
                     <Image
-                        source={require('../assets/profile_pic/Nate.jpg')}
-                        style={{ width: '100%', height: 200 }}
+                        source={require('./mockDB/profile_pic/Nate.jpg')}
+                        style={{ width: '100%', height: 200, borderRadius: 15 }}
                     />
                     <Text>City: {profile.city}</Text>
                     <Text>Schedule: {profile.schedule}</Text>
                     <Text>Type of Workout: {profile.typeOfWorkout}</Text>
                     <Text>Prefered Music: {profile.music}</Text>
-                    {/* </View> */}
+                    {/* 135 charactor limit */}
+                    <Text>About Me: {profile.user_note}</Text>
                 </View>
             </Card >
         );
     };
+
+    // render bitch
 
     renderCards = () => {
         return this.props.profile.map(this.renderCardItem);
@@ -30,12 +32,5 @@ class Swipe extends Component {
     }
 };
 
-const styles = {
-    detailWrapper: {
-        flexDirection: "row",
-        justifyContent: "space-around",
-        marginBottom: 10
-    }
-};
 
 export default Swipe;

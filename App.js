@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import Swipe from "./components/Swipe";
-import profile from "./components/data";
+import profile from "./components/mockDB/data";
 
 export default class App extends React.Component {
   state = {
@@ -11,8 +11,8 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={{ color: "blue" }}>Liked: {this.state.likedProfile}</Text>
-        <Text style={{ color: "red" }}>Passed: {this.state.passedProfile}</Text>
+        <Text style={{ color: "#424242", textAlign: 'center', marginTop: 25 }}>Yep: {this.state.likedProfile}</Text>
+        <Text style={{ color: "#424242", textAlign: 'center' }}>Nope: {this.state.passedProfile}</Text>
         <Swipe profile={profile} />
       </View>
     );
@@ -22,7 +22,8 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    borderRadius: 15
   },
   statusStyle: {
     padding: 15,
