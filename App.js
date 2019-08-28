@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Swipe from "./components/Swipe";
-import profile from "./components/Profiles"
+import profile from "./components/data";
 
 export default class App extends React.Component {
   state = {

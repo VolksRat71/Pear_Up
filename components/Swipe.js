@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 import { Card } from 'react-native-elements';
+import profile from './data';
 
 class Swipe extends Component {
     renderCardItem = (profile, i) => {
         return (
             <Card title={profile.name} titleStyle={{ fontSize: 14 }} key={i}>
                 <View style={{ height: 200 }}>
-                    <Image
-                        source={require("../assets/profile_pic/Nate.jpg")}
-                        style={{ width: "100%", height: 200 }}
-                    />
                 </View>
                 <View style={styles.detailWrapper}>
                     <Text>City: {profile.city}</Text>
@@ -23,9 +20,8 @@ class Swipe extends Component {
     };
 
     renderCards = () => {
-        return this.props.data.map(this.renderCardItem);
-    };
-
+        return this.props.profile.map(this.renderCardItem);
+    }
     render() {
         return <View>{this.renderCards()}</View>
     }
@@ -38,7 +34,5 @@ const styles = {
         marginBottom: 10
     }
 };
-
-// yo
 
 export default Swipe;
