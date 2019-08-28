@@ -13,7 +13,7 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <Text style={{ color: "blue" }}>Liked: {this.state.likedProfile}</Text>
         <Text style={{ color: "red" }}>Passed: {this.state.passedProfile}</Text>
-        <Swipe />
+        <Swipe profile={profile} />
       </View>
     );
   }
