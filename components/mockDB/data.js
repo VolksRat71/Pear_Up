@@ -19,7 +19,7 @@ let profile = [{
     {
         "profile_pic": "./profile_pic/Arlen.png",
         "name": "Arlen Cornejo",
-        "city": "Portland, OR",
+        "city": "Portland, ORe",
         "schedule": "06:30p - 09:00p",
         "typeOfWorkout": "Calisthenics",
         "music": "The Growlers",
