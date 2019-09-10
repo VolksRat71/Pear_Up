@@ -26,11 +26,10 @@ const MenuModal = props => {
                         Profile
                     </Text>
                 </TouchableOpacity>
+                {/* Dynamic insertion of chats with delete option*/}
                 <TouchableOpacity
                     onPress={props.onClose}>
-                    <Text
-                        style={{ color: 'red' }}
-                        style={styles.menuItems}>
+                    <Text style={styles.menuClose}>
                         Close
                     </Text>
                 </TouchableOpacity>
@@ -52,7 +51,11 @@ const styles = StyleSheet.create({
     },
     menuItems: {
         fontSize: 25,
-    }
+    },
+    menuClose: {
+        fontSize: 25,
+        color: 'red',
+    },
 })
 
 export default MenuModal;

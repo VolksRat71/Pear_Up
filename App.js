@@ -1,19 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import Chat from './screens/Chat';
+import Match from './screens/Match';
+import Profile from './screens/Profile';
+import ProfileEditor from './screens/ProfileEditor';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <View style={styles.viewPort}>
+      <Chat />
+      {/* <Match /> */}
+      {/* <Profile /> */}
+      {/* <ProfileEditor /> */}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  viewPort: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
