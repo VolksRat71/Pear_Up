@@ -1,17 +1,19 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import Chat from './screens/Chat';
-import Match from './screens/Match';
+import Login from './screens/Login';
 import Profile from './screens/Profile';
 import ProfileEditor from './screens/ProfileEditor';
+import Match from './screens/Match';
+import Chat from './screens/Chat';
 
 export default function App() {
   return (
     <View style={styles.viewPort}>
-      <Chat />
-      {/* <Match /> */}
+      <Login />
       {/* <Profile /> */}
       {/* <ProfileEditor /> */}
+      {/* <Match /> */}
+      {/* <Chat /> */}
     </View>
   );
 }

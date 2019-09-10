@@ -1,26 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     View,
     StyleSheet,
     Text,
-    Image,
-    ImageBackground
+    ImageBackground,
+    TouchableOpacity,
 } from 'react-native';
 import Card from '../components/Card';
+import LoginModal from '../components/LoginModal';
 
 const Login = props => {
+
+    const [isLogin, setIsLogin] = useState(false);
+
+    const closeModal = () => {
+        setIsLogin(false);
+    }
+
     return (
         <ImageBackground
             source={require('../assets/login_background.gif')}
             style={styles.backGround}>
             <View style={styles.viewPort}>
                 <Card style={styles.loginCard}>
-                    <Text>Login</Text>
-                    {/* <Image
-                        source={require('../assets/placeholder_logo.jpg')}
-                        style={styles.logo}
-                    /> */}
+                    <View style={styles.welcomeMessage}>
+                        <Text style={{ fontSize: 25, color: '#008B8B' }}>Welcome to Emit</Text>
+                    </View>
+                    <View style={styles.getStarted}>
+                        <TouchableOpacity
+                            onPress={() => setIsLogin(true)}>
+                            <Text style={{ fontSize: 20, color: '#f7287b' }}>Get Started</Text>
+                        </TouchableOpacity>
+                    </View>
                 </Card>
+                <LoginModal
+                    visible={isLogin}
+                    onClose={closeModal} />
             </View>
         </ImageBackground>
     )
@@ -37,16 +52,26 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     loginCard: {
-        opacity: .7,
-        height: 300,
+        opacity: .8,
+        height: '30%',
         width: 300,
         maxWidth: '80%',
-        alignItems: 'center',
-        justifyContent: 'center',
+        borderWidth: 1,
+        borderColor: 'gray',
     },
-    logo: {
-        flex: 1,
-        width: '50%',
+    welcomeMessage: {
+        borderBottomWidth: 1,
+        borderBottomColor: 'gray',
+        paddingBottom: 15,
+        alignItems: 'center',
+        // Font style stated with <Text>
+    },
+    getStarted: {
+        alignItems: 'center',
+        height: '100%',
+        width: '100%',
+        paddingTop: '22%'
+        // Font style stated with <Text>
     }
 });
 
