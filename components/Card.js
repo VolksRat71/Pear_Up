@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import Dimension from '../constants/dimenions';
+import Color from '../constants/color';
 
 const Card = props => {
     return <View style={{ ...styles.card, ...props.style }}>{props.children}</View>
@@ -7,14 +9,16 @@ const Card = props => {
 
 const styles = StyleSheet.create({
     card: {
-        borderRadius: 5,
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: 2 },
-        shadowRadius: 6,
-        shadowOpacity: 0.26,
-        elevation: 8,
+        borderWidth: Dimension.borders,
+        borderColor: Color.borders,
+        borderRadius: Dimension.borderRadius,
+        shadowColor: Color.iOSshadowColor,
+        shadowOffset: Dimension.iOSshadowOffset,
+        shadowRadius: Dimension.iOSshadowRadius,
+        shadowOpacity: Dimension.iOSshadowOpacity,
+        elevation: Dimension.androidShadow,
         paddingVertical: 15,
-        backgroundColor: 'white',
+        backgroundColor: Color.secondary,
     },
 });
 

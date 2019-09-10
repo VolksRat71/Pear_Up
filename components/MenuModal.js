@@ -6,6 +6,8 @@ import {
     StyleSheet,
     TouchableOpacity
 } from 'react-native';
+import Color from '../constants/color'
+import Dimension from '../constants/dimenions'
 
 const MenuModal = props => {
     return (
@@ -42,18 +44,21 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: Color.primary,
     },
     menuTitle: {
         fontWeight: 'bold',
-        fontSize: 45,
+        fontSize: Dimension.headText,
         textDecorationLine: 'underline',
+        color: Color.primary,
     },
     menuItems: {
-        fontSize: 25,
+        color: Color.accent,
+        fontSize: Dimension.contentText,
     },
     menuClose: {
-        fontSize: 25,
-        color: 'red',
+        fontSize: Dimension.contentText,
+        color: Color.negitiveInput,
     },
 })
 

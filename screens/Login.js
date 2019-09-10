@@ -6,6 +6,8 @@ import {
     ImageBackground,
     TouchableOpacity,
 } from 'react-native';
+import Color from '../constants/color'
+import Dimension from '../constants/dimenions'
 import Card from '../components/Card';
 import LoginModal from '../components/LoginModal';
 
@@ -24,12 +26,12 @@ const Login = props => {
             <View style={styles.viewPort}>
                 <Card style={styles.loginCard}>
                     <View style={styles.welcomeMessage}>
-                        <Text style={{ fontSize: 25, color: '#008B8B' }}>Welcome to Emit</Text>
+                        <Text style={{ fontSize: Dimension.headText, color: Color.primary }}>Welcome to Emit</Text>
                     </View>
                     <View style={styles.getStarted}>
                         <TouchableOpacity
                             onPress={() => setIsLogin(true)}>
-                            <Text style={{ fontSize: 20, color: '#f7287b' }}>Get Started</Text>
+                            <Text style={{ fontSize: Dimension.contentText, color: Color.accent }}>Get Started</Text>
                         </TouchableOpacity>
                     </View>
                 </Card>
@@ -53,15 +55,13 @@ const styles = StyleSheet.create({
     },
     loginCard: {
         opacity: .8,
-        height: '30%',
+        height: 225,
         width: 300,
         maxWidth: '80%',
-        borderWidth: 1,
-        borderColor: 'gray',
     },
     welcomeMessage: {
-        borderBottomWidth: 1,
-        borderBottomColor: 'gray',
+        borderBottomWidth: Dimension.borders,
+        borderBottomColor: Color.borders,
         paddingBottom: 15,
         alignItems: 'center',
         // Font style stated with <Text>
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: '100%',
         width: '100%',
-        paddingTop: '22%'
+        paddingTop: 65
         // Font style stated with <Text>
     }
 });

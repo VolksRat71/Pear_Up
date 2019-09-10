@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import Logo from './Logo';
 import Menu from './Menu';
 import Color from '../constants/color'
+import Dimension from '../constants/dimenions';
 
 
 const NavBar = props => {
@@ -30,6 +31,8 @@ const styles = StyleSheet.create({
         paddingTop: 55,
         paddingBottom: 10,
         backgroundColor: Color.primary,
+        borderBottomColor: Color.borders,
+        borderBottomWidth: Dimension.borders,
     },
     left: {
         flex: 1,

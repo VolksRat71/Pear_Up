@@ -9,8 +9,8 @@ import Chat from './screens/Chat';
 export default function App() {
   return (
     <View style={styles.viewPort}>
-      <Login />
-      {/* <Profile /> */}
+      {/* <Login /> */}
+      <Profile />
       {/* <ProfileEditor /> */}
       {/* <Match /> */}
       {/* <Chat /> */}

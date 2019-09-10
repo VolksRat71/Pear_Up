@@ -6,6 +6,8 @@ import {
     StyleSheet,
     TouchableOpacity
 } from 'react-native';
+import Color from '../constants/color';
+import Dimension from '../constants/dimenions';
 
 const LoginModal = props => {
     return (
@@ -45,15 +47,15 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#008B8B',
+        backgroundColor: Color.primary,
     },
     menuItems: {
-        fontSize: 25,
-        color: '#f7287b'
+        fontSize: Dimension.contentText,
+        color: Color.accent,
     },
     menuClose: {
-        fontSize: 25,
-        color: 'black',
+        fontSize: Dimension.contentText,
+        color: Color.negitiveInput,
     },
 })
 

@@ -5,6 +5,7 @@ import {
     Image,
     TouchableOpacity
 } from 'react-native';
+import Dimension from '../constants/dimenions';
 
 const Logo = props => {
     return (
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
     logo: {
         flex: 1,
         width: 100,
-        borderRadius: 5,
+        borderRadius: Dimension.borderRadius,
     }
 });
 

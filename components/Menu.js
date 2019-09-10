@@ -6,6 +6,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 import MenuModal from './MenuModal';
+import Dimension from '../constants/dimenions';
 
 const Menu = props => {
 
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: 50,
-        borderRadius: 5,
+        borderRadius: Dimension.borderRadius,
     },
 });
 
