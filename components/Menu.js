@@ -1,22 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     View,
     StyleSheet,
     Image,
-    TouchableOpacity,
-    Modal
+    TouchableOpacity
 } from 'react-native';
+import MenuModal from './MenuModal';
 
 const Menu = props => {
 
+    const [isMenu, setIsMenu] = useState(false);
+
+    const closeModal = () => {
+        setIsMenu(false);
+    };
+
     return (
         <View>
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => setIsMenu(true)}>
                 <Image
                     source={require('../assets/menu_icon.png')}
                     style={styles.container}
                 />
             </TouchableOpacity>
+            <MenuModal
+                visible={isMenu}
+                onClose={closeModal}
+            />
         </View>
     )
 };
@@ -27,10 +38,6 @@ const styles = StyleSheet.create({
         width: 50,
         borderRadius: 5,
     },
-    screen: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    }
 });
 
 export default Menu;
