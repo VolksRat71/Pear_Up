@@ -10,10 +10,10 @@ export default function App() {
   return (
     <View style={styles.viewPort}>
       {/* <Login /> */}
-      <Profile />
+      {/* <Profile /> */}
       {/* <ProfileEditor /> */}
       {/* <Match /> */}
-      {/* <Chat /> */}
+      <Chat />
     </View>
   );
 }

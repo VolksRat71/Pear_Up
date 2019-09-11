@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import {
     View,
     StyleSheet,
-    Image,
+    Text,
     TouchableOpacity
 } from 'react-native';
 import MenuModal from './MenuModal';
 import Dimension from '../constants/dimenions';
+import Color from '../constants/color';
 
 const Menu = props => {
 
@@ -20,10 +21,7 @@ const Menu = props => {
         <View>
             <TouchableOpacity
                 onPress={() => setIsMenu(true)}>
-                <Image
-                    source={require('../assets/menu_icon.png')}
-                    style={styles.container}
-                />
+                <Text style={styles.menuIcon}>☰</Text>
             </TouchableOpacity>
             <MenuModal
                 visible={isMenu}
@@ -39,6 +37,10 @@ const styles = StyleSheet.create({
         width: 50,
         borderRadius: Dimension.borderRadius,
     },
+    menuIcon: {
+        color: Color.secondary,
+        fontSize: 40,
+    }
 });
 
 export default Menu;

@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import NavBar from '../components/NavBar'
+import ChatHead from '../components/ChatHead'
 
 const Chat = props => {
     return (
         <View style={styles.viewPort}>
-            <NavBar />
+            <ChatHead />
             <View style={styles.chatScreen}>
                 <Text>Chat</Text>
             </View>

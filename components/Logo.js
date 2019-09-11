@@ -2,19 +2,17 @@ import React from 'react';
 import {
     View,
     StyleSheet,
-    Image,
-    TouchableOpacity
+    TouchableOpacity,
+    Text
 } from 'react-native';
+import Color from '../constants/color';
 import Dimension from '../constants/dimenions';
 
 const Logo = props => {
     return (
         <View>
             <TouchableOpacity>
-                <Image
-                    source={require('../assets/placeholder_logo.jpg')}
-                    style={styles.logo}
-                />
+                <Text style={styles.logo}>emit</Text>
             </TouchableOpacity>
         </View>
     )
@@ -23,8 +21,9 @@ const Logo = props => {
 const styles = StyleSheet.create({
     logo: {
         flex: 1,
-        width: 100,
         borderRadius: Dimension.borderRadius,
+        fontSize: 50,
+        color: Color.accent,
     }
 });
 
