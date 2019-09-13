@@ -26,7 +26,7 @@ const Login = props => {
             <View style={styles.viewPort}>
                 <Card style={styles.loginCard}>
                     <View style={styles.welcomeMessage}>
-                        <Text style={{ fontSize: Dimension.headText, color: Color.primary }}>Welcome to Emit</Text>
+                        <Text style={{ fontSize: Dimension.headText, color: Color.primary }}>Welcome to oregon Emit</Text>
                     </View>
                     <View style={styles.getStarted}>
                         <TouchableOpacity
