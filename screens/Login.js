@@ -41,7 +41,7 @@ class Login extends React.Component {
         });
     };
     loginFailed = () => {
-        console.log('login failed ***');
+        console.warn('login failed ***');
         alert('Login failure. Please tried again.');
     };
 
@@ -62,6 +62,7 @@ class Login extends React.Component {
                 />
                 <Text style={styles.title}>Password:</Text>
                 <TextInput
+                    secureTextEntry={true}
                     style={styles.nameInput}
                     onChangeText={this.onChangeTextPassword}
                     value={this.state.password}
