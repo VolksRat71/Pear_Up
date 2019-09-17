@@ -10,7 +10,6 @@ import {
 import Color from '../constants/color'
 import Dimension from '../constants/dimenions'
 import Card from '../components/Card';
-import LoginModal from '../components/LoginModal';
 
 const GetStarted = props => {
 
@@ -31,14 +30,12 @@ const GetStarted = props => {
                     </View>
                     <View style={styles.getStarted}>
                         <TouchableOpacity
-                            onPress={() => setIsLogin(true)}>
+                            onPress={() => props.navigation.toggleDrawer()}>
                             <Text style={{ fontSize: Dimension.contentText, color: Color.accent }}>Get Started</Text>
                         </TouchableOpacity>
                     </View>
                 </Card>
-                <LoginModal
-                    visible={isLogin}
-                    onClose={closeModal} />
+
             </View>
         </ImageBackground>
     )
