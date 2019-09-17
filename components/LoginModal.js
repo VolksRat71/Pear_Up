@@ -6,6 +6,7 @@ import {
     StyleSheet,
     TouchableOpacity
 } from 'react-native';
+
 import Color from '../constants/color';
 import Dimension from '../constants/dimenions';
 

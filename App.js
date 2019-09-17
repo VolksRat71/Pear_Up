@@ -1,25 +1,22 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import Login from './screens/Login';
+// Import the screens
+// import GetStarted from './screens/GetStarted';
+import Login from './screens/GetStarted';
+import SignUp from './screens/SignUp'
 import Profile from './screens/Profile';
 import ProfileEditor from './screens/ProfileEditor';
-import Match from './screens/Match';
 import Chat from './screens/Chat';
+// Import React Navigation
+import { createStackNavigator } from 'react-navigation'
 
-export default function App() {
-  return (
-    <View style={styles.viewPort}>
-      {/* <Login /> */}
-      {/* <Profile /> */}
-      {/* <ProfileEditor /> */}
-      {/* <Match /> */}
-      <Chat />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  viewPort: {
-    flex: 1,
-  },
+// Create the navigator
+const navigator = createStackNavigator({
+  // GetStarted: { screen: GetStarted },
+  Login: { screen: Login },
+  SignUp: { screen: SignUp },
+  Profile: { screen: Profile },
+  ProfileEditor: { screen: ProfileEditor },
+  Chat: { screen: Chat },
 });
+
+// Export it as the root component
+export default navigator
