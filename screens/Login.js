@@ -1,78 +1,109 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-    View,
-    StyleSheet,
-    Text,
-    ImageBackground,
-    TouchableOpacity,
+    StyleSheet, Text,
+    TextInput, View,
+    Button
 } from 'react-native';
-import Color from '../constants/color'
-import Dimension from '../constants/dimenions'
-import Card from '../components/Card';
-import LoginModal from '../components/LoginModal';
+import FirebaseSDK from '../config/FirebaseSDK';
 
-const Login = props => {
+class Login extends React.Component {
+    static navigationOptions = {
+        title: 'Emit Chatter',
+    };
 
-    const [isLogin, setIsLogin] = useState(false);
+    state = {
+        name: '',
+        email: '',
+        password: '',
+        avatar: '',
+    };
 
-    const closeModal = () => {
-        setIsLogin(false);
-    }
+    // using Fire.js
+    onPressLogin = async () => {
+        console.log('pressing login... email:' + this.state.email);
+        const user = {
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password,
+            avatar: this.state.avatar,
+        };
 
-    return (
-        <ImageBackground
-            source={require('../assets/login_background.gif')}
-            style={styles.backGround}>
-            <View style={styles.viewPort}>
-                <Card style={styles.loginCard}>
-                    <View style={styles.welcomeMessage}>
-                        <Text style={{ fontSize: Dimension.headText, color: Color.primary }}>Welcome to Emit</Text>
-                    </View>
-                    <View style={styles.getStarted}>
-                        <TouchableOpacity
-                            onPress={() => setIsLogin(true)}>
-                            <Text style={{ fontSize: Dimension.contentText, color: Color.accent }}>Get Started</Text>
-                        </TouchableOpacity>
-                    </View>
-                </Card>
-                <LoginModal
-                    visible={isLogin}
-                    onClose={closeModal} />
+        const response = FirebaseSDK.login(
+            user,
+            this.loginSuccess,
+            this.loginFailed
+        );
+    };
+
+    loginSuccess = () => {
+        console.log('login successful, navigate to chat.');
+        this.props.navigation.navigate('Chat', {
+            name: this.state.name,
+            email: this.state.email,
+            avatar: this.state.avatar,
+        });
+    };
+    loginFailed = () => {
+        console.log('login failed ***');
+        alert('Login failure. Please tried again.');
+    };
+
+
+    onChangeTextEmail = email => this.setState({ email });
+    onChangeTextPassword = password => this.setState({ password });
+
+
+    render() {
+        return (
+            <View>
+                <Text style={styles.title}>Email:</Text>
+                <TextInput
+                    style={styles.nameInput}
+                    placeHolder="test3@gmail.com"
+                    onChangeText={this.onChangeTextEmail}
+                    value={this.state.email}
+                />
+                <Text style={styles.title}>Password:</Text>
+                <TextInput
+                    style={styles.nameInput}
+                    onChangeText={this.onChangeTextPassword}
+                    value={this.state.password}
+                />
+                <Button
+                    title="Login 2"
+                    style={styles.buttonText}
+                    onPress={this.onPressLogin}
+                />
+
+                <Button
+                    title="Go to create new account"
+                    style={styles.buttonText}
+                    onPress={() => this.props.navigation.navigate("CreateAccount")}
+                />
             </View>
-        </ImageBackground>
-    )
+        );
+    }
 }
 
+const offset = 16;
 const styles = StyleSheet.create({
-    backGround: {
-        height: '100%'
+    title: {
+        marginTop: offset,
+        marginLeft: offset,
+        fontSize: offset,
     },
-    viewPort: {
-        flex: 1,
-        height: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
+    nameInput: {
+        height: offset * 2,
+        margin: offset,
+        paddingHorizontal: offset,
+        borderColor: '#111111',
+        borderWidth: 1,
+        fontSize: offset,
     },
-    loginCard: {
-        opacity: .8,
-        height: 225,
-        width: 300,
-        maxWidth: '80%',
+    buttonText: {
+        marginLeft: offset,
+        fontSize: 42,
     },
-    welcomeMessage: {
-        borderBottomWidth: Dimension.borders,
-        borderBottomColor: Color.borders,
-        paddingBottom: 15,
-        alignItems: 'center',
-        // Font style stated with <Text>
-    },
-    getStarted: {
-        alignItems: 'center',
-        height: '100%',
-        width: '100%',
-        paddingTop: 65
-        // Font style stated with <Text>
-    }
 });
 
 export default Login;
