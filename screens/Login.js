@@ -33,8 +33,8 @@ class Login extends React.Component {
     };
 
     loginSuccess = () => {
-        console.log('login successful, navigate to chat.');
-        this.props.navigation.navigate('Chat', {
+        console.log('login successful');
+        this.props.navigation.navigate('Profile', {
             name: this.state.name,
             email: this.state.email,
             avatar: this.state.avatar,
@@ -73,7 +73,7 @@ class Login extends React.Component {
                 />
 
                 <Button
-                    title="Sign Up"
+                    title="Sign"
                     style={styles.buttonText}
                     onPress={() => this.props.navigation.navigate("SignUp")}
                 />

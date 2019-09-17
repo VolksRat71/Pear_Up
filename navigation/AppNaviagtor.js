@@ -15,14 +15,20 @@ const GetStartedNavigator = createDrawerNavigator({
     SignUp: SignUp
 });
 
-const LoginNavigator = createStackNavigator({
+const LoginToSignNavigator = createStackNavigator({
     Login: Login,
     SignUp: SignUp
+});
+
+const LoginToProfileNavigator = createStackNavigator({
+    Login: Login,
+    Profile: Profile
 })
 
 const AppNavigator = createStackNavigator({
     GetStartedNavigator: GetStartedNavigator,
-    LoginNavigator: LoginNavigator
+    LoginToSignNavigator: LoginToSignNavigator,
+    LoginToProfileNavigator: LoginToProfileNavigator
 });
 
 export default createAppContainer(AppNavigator);
