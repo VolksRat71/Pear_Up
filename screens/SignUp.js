@@ -9,9 +9,6 @@ import {
 import FirebaseSDK from '../config/FirebaseSDK';
 
 class CreateAccount extends React.Component {
-    static navigationOptions = {
-        title: 'Scv Chatter',
-    };
 
     state = {
         name: '',

@@ -7,9 +7,6 @@ import {
 import FirebaseSDK from '../config/FirebaseSDK';
 
 class Login extends React.Component {
-    static navigationOptions = {
-        title: 'Emit Chatter',
-    };
 
     state = {
         name: '',
@@ -76,9 +73,9 @@ class Login extends React.Component {
                 />
 
                 <Button
-                    title="Go to create new account"
+                    title="Sign Up"
                     style={styles.buttonText}
-                    onPress={() => this.props.navigation.navigate("CreateAccount")}
+                    onPress={() => this.props.navigation.navigate("SignUp")}
                 />
             </View>
         );

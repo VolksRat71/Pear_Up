@@ -15,8 +15,14 @@ const GetStartedNavigator = createDrawerNavigator({
     SignUp: SignUp
 });
 
+const LoginNavigator = createStackNavigator({
+    Login: Login,
+    SignUp: SignUp
+})
+
 const AppNavigator = createStackNavigator({
     GetStartedNavigator: GetStartedNavigator,
+    LoginNavigator: LoginNavigator
 });
 
 export default createAppContainer(AppNavigator);

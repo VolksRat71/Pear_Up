@@ -13,12 +13,6 @@ import Card from '../components/Card';
 
 const GetStarted = props => {
 
-    const [isLogin, setIsLogin] = useState(false);
-
-    const closeModal = () => {
-        setIsLogin(false);
-    }
-
     return (
         <ImageBackground
             source={require('../assets/login_background.gif')}
