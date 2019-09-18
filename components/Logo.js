@@ -3,16 +3,29 @@ import {
     View,
     StyleSheet,
     TouchableOpacity,
-    Text
+    Text,
+    Image,
+    
 } from 'react-native';
 import Color from '../constants/color';
 import Dimension from '../constants/dimenions';
+import Emitlogo from '../assets/Emitlogo.png';
+// import { Avatar } from 'react-native-paper';
+
+
+// const MyComponent = () => (
+//     <Avatar.Image size={24} source={require('../assets/avatar.png')} />
+//   );
+
+
+
 
 const Logo = props => {
     return (
         <View>
             <TouchableOpacity>
-                <Text style={styles.logo}>emit</Text>
+            {/* <img src={Emitlogo} />                        */}
+            <Image style={{}} source={Emitlogo} />
             </TouchableOpacity>
         </View>
     )
