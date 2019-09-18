@@ -34,7 +34,7 @@ class Login extends React.Component {
 
     loginSuccess = () => {
         console.log('login successful');
-        this.props.navigation.navigate('Profile', {
+        this.props.navigation.navigate('ProfileScreen', {
             name: this.state.name,
             email: this.state.email,
             avatar: this.state.avatar,
@@ -81,6 +81,11 @@ class Login extends React.Component {
             </View>
         );
     }
+}
+
+Login.navigationOptions = {
+    headerMode: 'none',
+    headerVisible: false
 }
 
 const offset = 16;

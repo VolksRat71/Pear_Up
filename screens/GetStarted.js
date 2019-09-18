@@ -24,7 +24,7 @@ const GetStarted = props => {
                     </View>
                     <View style={styles.getStarted}>
                         <TouchableOpacity
-                            onPress={() => props.navigation.toggleDrawer()}>
+                            onPress={() => props.navigation.replace('Login')}>
                             <Text style={{ fontSize: Dimension.contentText, color: Color.accent }}>Get Started</Text>
                         </TouchableOpacity>
                     </View>
@@ -34,6 +34,7 @@ const GetStarted = props => {
         </ImageBackground>
     )
 }
+
 
 const styles = StyleSheet.create({
     backGround: {
