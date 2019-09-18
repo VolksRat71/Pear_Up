@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-import Color from '../constants/color'
+import Color from '../constants/Colors'
 import Dimension from '../constants/dimenions'
 import Card from '../components/Card';
 

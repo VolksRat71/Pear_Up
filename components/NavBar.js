@@ -2,7 +2,7 @@ import React from 'React';
 import { View, Text, StyleSheet } from 'react-native';
 import Logo from './Logo';
 import Menu from './Menu';
-import Color from '../constants/color'
+import Color from '../constants/Colors'
 import Dimension from '../constants/dimenions';
 
 

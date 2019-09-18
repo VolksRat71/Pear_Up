@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, FlatList, } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
-import { CATEGORIES } from '../data/dummy-data';
+import { CATEGORIES } from '../data/constant-data';
 import HeaderButton from '../components/HeaderButton'
 import TouchableComponent from '../components/TouchableCmp'
 

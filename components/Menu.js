@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import MenuModal from './MenuModal';
 import Dimension from '../constants/dimenions';
-import Color from '../constants/color';
+import Color from '../constants/Colors';
 
 const Menu = props => {
 

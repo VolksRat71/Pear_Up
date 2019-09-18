@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Button } from 'react-native';
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import HeaderButton from '../components/HeaderButton';
 
 const Profile = props => {
     return (

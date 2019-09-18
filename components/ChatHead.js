@@ -8,7 +8,7 @@ import {
 import BackIcon from './BackIcon';
 import Logo from './Logo';
 import Menu from './Menu';
-import Color from '../constants/color'
+import Color from '../constants/Colors'
 import Dimension from '../constants/dimenions';
 
 

@@ -6,7 +6,7 @@ import {
     StyleSheet,
     TouchableOpacity
 } from 'react-native';
-import Color from '../constants/color';
+import Color from '../constants/Colors';
 import Dimension from '../constants/dimenions';
 
 const LoginModal = props => {
