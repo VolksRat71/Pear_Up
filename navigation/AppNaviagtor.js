@@ -9,26 +9,34 @@ import Profile from '../screens/Profile';
 import ProfileEditor from '../screens/ProfileEditor';
 import Chat from '../screens/Chat';
 
-const GetStartedNavigator = createDrawerNavigator({
-    GetStarted: GetStarted,
+
+const GetStartedNavigator = createStackNavigator({
+    GetStarted: {
+        screen: GetStarted,
+        header: 'none',
+        navigationOptions: {
+            header: null
+        }
+    },
     Login: Login,
     SignUp: SignUp
 });
 
-const LoginToSignNavigator = createStackNavigator({
-    Login: Login,
-    SignUp: SignUp
-});
 
 const LoginToProfileNavigator = createStackNavigator({
-    Login: Login,
-    Profile: Profile
+    LoginSet: GetStartedNavigator,
+    ProfileScreen: Profile
+}, {
+    headerMode: 'none',
+    navigationOptions: {
+        header: null
+    }
 })
 
-const AppNavigator = createStackNavigator({
-    GetStartedNavigator: GetStartedNavigator,
-    LoginToSignNavigator: LoginToSignNavigator,
-    LoginToProfileNavigator: LoginToProfileNavigator
-});
+// const AppNavigator = createStackNavigator({
+//     GetStartedNavigator: GetStartedNavigator,
+//     LoginToSignNavigator: LoginToSignNavigator,
+//     LoginToProfileNavigator: LoginToProfileNavigator
+// });
 
-export default createAppContainer(AppNavigator);
+export default createAppContainer(LoginToProfileNavigator);

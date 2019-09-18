@@ -93,20 +93,21 @@ class CreateAccount extends React.Component {
     render() {
         return (
             <View>
-                <Text style={styles.title}>Email:</Text>
+                <Text style={styles.title}>Email: Email is for login purposes only</Text>
                 <TextInput
                     style={styles.nameInput}
                     placeHolder="test3@gmail.com"
                     onChangeText={this.onChangeTextEmail}
                     value={this.state.email}
                 />
-                <Text style={styles.title}>Password:</Text>
+                <Text style={styles.title}>Password: Input must me 6 charactors minimum</Text>
                 <TextInput
+                    secureTextEntry={true}
                     style={styles.nameInput}
                     onChangeText={this.onChangeTextPassword}
                     value={this.state.password}
                 />
-                <Text style={styles.title}>Name:</Text>
+                <Text style={styles.title}>Name: What everyone else will see</Text>
                 <TextInput
                     style={styles.nameInput}
                     onChangeText={this.onChangeTextName}

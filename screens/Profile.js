@@ -1,11 +1,9 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import NavBar from '../components/NavBar'
 
 const Profile = props => {
     return (
         <View style={styles.viewPort}>
-            <NavBar />
             <View style={styles.profileScreen}>
                 <Text>Profile</Text>
             </View>
