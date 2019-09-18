@@ -34,14 +34,14 @@ class Login extends React.Component {
 
     loginSuccess = () => {
         console.log('login successful');
-        this.props.navigation.navigate('Profile', {
+        this.props.navigation.navigate('ProfileScreen', {
             name: this.state.name,
             email: this.state.email,
             avatar: this.state.avatar,
         });
     };
     loginFailed = () => {
-        console.log('login failed ***');
+        console.warn('login failed ***');
         alert('Login failure. Please tried again.');
     };
 
@@ -62,6 +62,7 @@ class Login extends React.Component {
                 />
                 <Text style={styles.title}>Password:</Text>
                 <TextInput
+                    secureTextEntry={true}
                     style={styles.nameInput}
                     onChangeText={this.onChangeTextPassword}
                     value={this.state.password}
@@ -80,6 +81,11 @@ class Login extends React.Component {
             </View>
         );
     }
+}
+
+Login.navigationOptions = {
+    headerMode: 'none',
+    headerVisible: false
 }
 
 const offset = 16;

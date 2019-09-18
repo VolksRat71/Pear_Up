@@ -21,6 +21,18 @@ const defaultStackNavOptions = {
     headerTitle: 'A Screen'
 }
 
+const GetStartedNavigator = createStackNavigator({
+    GetStarted: {
+        screen: GetStarted,
+        header: 'none',
+        navigationOptions: {
+            header: null
+        }
+    },
+    Login: Login,
+    SignUp: SignUp
+});
+
 const ProfileNavigator = createStackNavigator({
     Profile: ProfileScreen,
     ProfileEditor: ProfileEditorScreen
@@ -50,4 +62,9 @@ const MainNavigator = createDrawerNavigator({
     }
 })
 
-export default createAppContainer(MainNavigator)
+const LoginToProfileNavigator = createStackNavigator({
+    LoginSet: GetStartedNavigator,
+    ProfileScreen: MainNavigator
+})
+
+export default createAppContainer(LoginToProfileNavigator)
