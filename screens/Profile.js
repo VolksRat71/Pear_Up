@@ -6,9 +6,28 @@ const Profile = props => {
         <View style={styles.viewPort}>
             <View style={styles.profileScreen}>
                 <Text>Profile</Text>
+                <Button
+                    title='Edit Profile'
+                    onPress={() => {
+                        props.navigation.navigate('ProfileEditor')
+                    }}
+                />
             </View>
         </View>
     )
+}
+
+Profile.navigationOptions = (navData) => {
+    return {
+        headerTitle: 'Profile',
+        headerLeft: (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item title='Menu' iconName='ios-menu' onPress={() => {
+                    navData.navigation.toggleDrawer();
+                }} />
+            </HeaderButtons>
+        )
+    }
 }
 
 const styles = StyleSheet.create({
