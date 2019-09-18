@@ -1,16 +1,34 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Button } from 'react-native';
 import NavBar from '../components/NavBar'
 
 const Profile = props => {
     return (
         <View style={styles.viewPort}>
-            <NavBar />
             <View style={styles.profileScreen}>
                 <Text>Profile</Text>
+                <Button
+                    title='Edit Profile'
+                    onPress={() => {
+                        props.navigation.navigate('ProfileEditor')
+                    }}
+                />
             </View>
         </View>
     )
+}
+
+Profile.navigationOptions = (navData) => {
+    return {
+        headerTitle: 'Profile',
+        headerLeft: (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item title='Menu' iconName='ios-menu' onPress={() => {
+                    navData.navigation.toggleDrawer();
+                }} />
+            </HeaderButtons>
+        )
+    }
 }
 
 const styles = StyleSheet.create({

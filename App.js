@@ -1,8 +1,12 @@
 import React from 'react';
-import AppNavigator from './navigation/AppNaviagtor'
+import { View, StyleSheet } from 'react-native';
+import { createStore, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
+
+import MainNavigator from './navigation/AppNavigator'
 
 export default function App() {
   return (
-    <AppNavigator />
+    <MainNavigator />
   );
 }
