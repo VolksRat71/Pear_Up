@@ -22,7 +22,7 @@ const Profile = props => {
 Profile.navigationOptions = (navData) => {
     return {
         headerTitle: 'Profile',
-        headerLeft: (
+        headerRight: (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item title='Menu' iconName='ios-menu' onPress={() => {
                     navData.navigation.toggleDrawer();
