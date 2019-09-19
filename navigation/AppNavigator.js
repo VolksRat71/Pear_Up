@@ -5,7 +5,9 @@ import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { createDrawerNavigator } from 'react-navigation-drawer'
 import { Ionicons } from '@expo/vector-icons'
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
+import HeaderButton from '../components/HeaderButton'
 import Colors from '../constants/Colors'
 import GetStarted from '../screens/GetStarted'
 import Login from '../screens/Login'
@@ -24,18 +26,6 @@ const defaultStackNavOptions = {
     headerTitle: 'A Screen'
 }
 
-const GetStartedNavigator = createStackNavigator({
-    GetStarted: {
-        screen: GetStarted,
-        header: 'none',
-        navigationOptions: {
-            header: null
-        }
-    },
-    Login: Login,
-    SignUp: SignUp
-});
-
 const ProfileNavigator = createStackNavigator({
     Profile: ProfileScreen,
     ProfileEditor: ProfileEditorScreen
@@ -44,7 +34,12 @@ const ProfileNavigator = createStackNavigator({
 })
 
 const ChatCategoriesNavigator = createStackNavigator({
-    Categories: SportCategoriesScreen,
+    Categories: {
+        screen: SportCategoriesScreen,
+        navigationOptions: {
+            headerTitle: 'contrast'
+        }
+    },
     ChatRoom: ChatScreen
 }, {
     defaultNavigationOptions: defaultStackNavOptions
@@ -65,9 +60,39 @@ const MainNavigator = createDrawerNavigator({
     }
 })
 
-const LoginToProfileNavigator = createStackNavigator({
-    LoginSet: GetStartedNavigator,
-    ProfileScreen: MainNavigator
-})
+const GetStartedNavigator = createStackNavigator({
+    GetStarted: {
+        screen: GetStarted,
+        header: 'none',
+        navigationOptions: {
+            header: null
+        }
+    },
+    Login: Login,
+    SignUp: SignUp,
+    ContentView: {
+        screen: MainNavigator,
+        // navigationOptions: {
+        //     headerRight: (
+        //         <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        //             <Item title='Menu' iconName='ios-menu' onPress={() => {
+        //                 navigation.toggleDrawer();
+        //             }} />
+        //         </HeaderButtons>
+        //     )
+        // }
+    }
+});
 
-export default createAppContainer(LoginToProfileNavigator)
+// const LoginToProfileNavigator = createStackNavigator({
+//     LoginSet: {
+//         screen: GetStartedNavigator,
+//         header: 'none',
+//         navigationOptions: {
+//             header: null
+//         }
+//     },
+//     ContentView: MainNavigator
+// })
+
+export default createAppContainer(GetStartedNavigator)
