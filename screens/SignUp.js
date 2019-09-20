@@ -5,6 +5,8 @@ import {
     Button,
 } from 'react-native';
 import FirebaseSDK from '../config/FirebaseSDK';
+import { FirebaseApp } from '@firebase/app-types';
+import { FirebaseAuth } from '@firebase/auth-types';
 
 class CreateAccount extends React.Component {
 
@@ -24,7 +26,7 @@ class CreateAccount extends React.Component {
                 password: this.state.password,
                 avatar: this.state.avatar,
             };
-            await FirebaseSDK.createAccount(user);
+            await FirebaseSDK.createAccount(user)
         } catch ({ message }) {
             console.log('create account failed. catch error:' + message);
         }

@@ -34,7 +34,7 @@ class Login extends React.Component {
 
     loginSuccess = () => {
         console.log('login successful');
-        this.props.navigation.replace('ContentView', {
+        this.props.navigation.replace('ContentStart', {
             name: this.state.name,
             email: this.state.email,
             avatar: this.state.avatar,

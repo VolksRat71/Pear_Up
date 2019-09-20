@@ -11,7 +11,7 @@ const Profile = props => {
                 <Button
                     title='Edit Profile'
                     onPress={() => {
-                        props.navigation.navigate('ProfileEditor')
+                        props.navigation.navigate('ContentEditor')
                     }}
                 />
             </View>
