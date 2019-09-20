@@ -55,6 +55,7 @@ class FirebaseSDK {
                     .then(function () {
                         console.log("Updated displayName successfully. name:" + user.name);
                         alert("User " + user.name + " was created successfully. Please login.");
+
                     }, function (error) {
                         console.warn("Error update displayName.");
                     });
