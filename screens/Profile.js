@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import firebase from 'firebase';
 import { View, StyleSheet, Text, Button, Image } from 'react-native';
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { Avatar, TextInput } from 'react-native-paper';
+
 import HeaderButton from '../components/HeaderButton';
+import ProfilePic from '../assets/placeholder-profile.jpg'
 
 const Profile = props => {
     const [profileImage, setProfileImage] = useState(firebase.auth().currentUser.photoURL)
@@ -14,18 +17,25 @@ const Profile = props => {
     return (
         <View style={styles.viewPort}>
             <View style={styles.profileScreen}>
-                <Text>Profile</Text>
-                <Image source={{ uri: profileImage }} style={{ width: 300, height: 300 }} />
-                <Button 
-                    title='Reload Image'
-                    onPress={imageHandler}
-                />
-                <Button
-                    title='Edit Profile'
-                    onPress={() => {
-                        props.navigation.navigate('ContentEditor')
-                    }}
-                />
+                <View style={styles.avatar}>
+                    <Avatar.Image size={300} source={{ uri: profileImage }} />
+                </View>
+                <View style={styles.profileData}>
+                    <Text style={styles.username}>Username: insert</Text>
+                    <Text style={styles.email}>Email: insert</Text>
+                    <View style={styles.editButton}>
+                        <Button
+                            title='Edit Profile'
+                            onPress={() => {
+                                props.navigation.navigate('ContentEditor')
+                            }}
+                        />
+                         <Button 
+                            title='Reload Image'
+                            onPress={imageHandler}
+                        />
+                    </View>
+                </View>
             </View>
         </View>
     )
@@ -57,6 +67,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    avatar: {
+        paddingBottom: 15,
+    },
+    username: {
+        fontWeight: 'bold',
+        fontSize: 20,
+    },
+    email: {
+        fontSize: 15,
+    },
+    profileData: {
+        alignItems: 'center',
+    },
+    editButton: {
+        marginVertical: 15,
+    }
 });
 
 export default Profile;
