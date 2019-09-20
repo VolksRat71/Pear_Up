@@ -14,7 +14,8 @@ const CategoriesScreen = props => {
                 color={itemData.item.color}
                 onPress={() => {
                     props.navigation.navigate('ChatRoom', {
-                        categoryId: itemData.item.id
+                        categoryId: itemData.item.id,
+                        categoryTitle: itemData.item.title
                     })
                 }}
             />

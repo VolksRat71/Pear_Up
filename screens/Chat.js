@@ -14,9 +14,9 @@ class Chat extends React.Component<Props> {
     constructor(props) {
         super(props);
     }
-    static navigationOptions = ({ navigation }) => ({
-        title: (navigation.state.params || {}).name || 'Chat!',
-    });
+    // static navigationOptions = ({ navigation }) => ({
+    //     title: (navigation.state.params || {}).name || 'Chat!',
+    // });
 
     state = {
         messages: [],
@@ -51,6 +51,14 @@ class Chat extends React.Component<Props> {
     }
     componentWillUnmount() {
         FirebaseSDK.refOff();
+    }
+}
+
+Chat.navigationOptions = navData => {
+    categoryName = navData.navigation.getParam('categoryTitle', 'chat?')
+
+    return {
+        headerTitle: categoryName + ' Chatroom'
     }
 }
 
