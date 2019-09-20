@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, Text, Button } from 'react-native';
+import { View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native';
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { Avatar, TextInput } from 'react-native-paper';
+import { Avatar } from 'react-native-paper';
 
 import HeaderButton from '../components/HeaderButton';
 import ProfilePic from '../assets/placeholder-profile.jpg'
+import Color from '../constants/Colors';
 const MyComponent = () => (
     <Avatar.Image size={300} source={ProfilePic} />
 );
@@ -20,12 +21,14 @@ const Profile = props => {
                     <Text style={styles.username}>Username: insert</Text>
                     <Text style={styles.email}>Email: insert</Text>
                     <View style={styles.editButton}>
-                        <Button
-                            title='Edit Profile'
+                        <TouchableOpacity
                             onPress={() => {
                                 props.navigation.navigate('ContentEditor')
-                            }}
-                        />
+                            }}>
+                            <Text style={{ color: "#0000FF" }}>
+                                Edit Profile
+                            </Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
@@ -50,6 +53,7 @@ const styles = StyleSheet.create({
     viewPort: {
         flex: 1,
         height: '100%',
+        backgroundColor: Color.primary,
     },
     profileScreen: {
         flex: 1,
@@ -61,10 +65,12 @@ const styles = StyleSheet.create({
         paddingBottom: 15,
     },
     username: {
+        color: Color.accent1,
         fontWeight: 'bold',
         fontSize: 20,
     },
     email: {
+        color: Color.accent2,
         fontSize: 15,
     },
     profileData: {
