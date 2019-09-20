@@ -49,6 +49,12 @@ const ContentDrawer = createDrawerNavigator({
             drawerLabel: 'Profile'
         }
     }
+}, {
+    // overlayColor: Platform.OS === 'android' ? Colors.primary : Colors.secondary,
+    drawerBackgroundColor : Platform.OS === 'android' ? Colors.secondary : Colors.primary,
+    contentOptions: {
+        activeTintColor: Platform.OS === 'android' ? Colors.primary : Colors.secondary
+    }
 })
 
 const MainNavigator = createStackNavigator({
