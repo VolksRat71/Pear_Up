@@ -38,7 +38,7 @@ const ContentDrawer = createDrawerNavigator({
     Categories: {
         screen: CategoriesNavigator,
         navigationOptions: {
-            drawerLabel: 'Sport Categories'
+            drawerLabel: 'Pick a Chatroom'
         }
     },
     Profile: {

@@ -1,6 +1,10 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Platform, TouchableNativeFeedback } from 'react-native'
 
+import Color from '../constants/Colors';
+import Dimension from '../constants/dimenions';
+import dimenions from '../constants/dimenions';
+
 const TouchableComponent = props => {
     let TouchableCmp = TouchableOpacity
 
@@ -25,28 +29,36 @@ const styles = StyleSheet.create({
     gridItem: {
         flex: 1,
         margin: 15,
-        height: 150,
-        borderRadius: 10,
+        height: 80,
+        borderRadius: Dimension.borderRadius,
+        shadowColor: Color.iOSshadowColor,
+        shadowOffset: Dimension.iOSshadowOffset,
+        shadowRadius: Dimension.iOSshadowRadius,
+        shadowOpacity: Dimension.iOSshadowOpacity,
+        elevation: Dimension.androidShadow,
         overflow:
             Platform.OS === 'android' && Platform.Version >= 21
                 ? 'hidden'
                 : 'visible',
-        elevation: 5,
+        borderColor: Color.borders,
+        borderWidth: Dimension.borders,
     },
     container: {
         flex: 1,
-        borderRadius: 10,
-        shadowColor: 'black',
-        shadowOpacity: 0.26,
-        shadowOffset: { width: 0, height: 2 },
-        shadowRadius: 10,
+        borderRadius: Dimension.borderRadius,
+        shadowColor: Color.iOSshadowColor,
+        shadowOffset: Dimension.iOSshadowOffset,
+        shadowRadius: Dimension.iOSshadowRadius,
+        shadowOpacity: Dimension.iOSshadowOpacity,
+        elevation: Dimension.androidShadow,
         padding: 15,
         justifyContent: 'flex-end',
         alignItems: 'flex-end'
     },
     title: {
         fontSize: 20,
-        textAlign: 'right'
+        textAlign: 'right',
+        color: Color.primary,
     }
 })
 
