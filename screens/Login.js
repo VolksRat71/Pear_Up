@@ -2,13 +2,22 @@ import React from 'react';
 import {
     StyleSheet, Text,
     TextInput, View,
-    Button, TouchableOpacity
+    TouchableOpacity,
+    KeyboardAvoidingView,
+    ScrollView, TouchableNativeFeedback,
+    Platform
 } from 'react-native';
 import FirebaseSDK from '../config/FirebaseSDK';
 
 import Card from '../components/Card';
 import Color from '../constants/Colors';
 import Dimensions from '../constants/dimenions';
+
+let TouchableCmp = TouchableOpacity;
+
+if (Platform.OS === 'android' && Platform.Version >= 21) {
+    TouchableCmp = TouchableNativeFeedback;
+}
 
 class Login extends React.Component {
 
@@ -56,16 +65,24 @@ class Login extends React.Component {
 
     render() {
         return (
-            <View style={styles.viewport}>
+            <KeyboardAvoidingView
+                behavior='padding'
+                keyboardVerticalOffset={50}
+                style={styles.viewport}
+            >
                 <View style={styles.loginContainer}>
                     <Card style={styles.loginCard}>
-                        <View>
+                        <ScrollView>
                             <Text style={styles.title}>Email:</Text>
                             <TextInput
                                 style={styles.nameInput}
                                 placeHolder="test3@gmail.com"
                                 onChangeText={this.onChangeTextEmail}
                                 value={this.state.email}
+                                autoCapitalize='none'
+                                autoCorrect={false}
+                                returnKeyType='next'
+                                keyboardType='email-address'
                             />
                             <Text style={styles.title}>Password:</Text>
                             <TextInput
@@ -75,25 +92,25 @@ class Login extends React.Component {
                                 value={this.state.password}
                             />
                             <View style={styles.buttonContainer}>
-                                <TouchableOpacity
+                                <TouchableCmp
                                     style={styles.button}
                                     onPress={this.onPressLogin}>
                                     <Text>
                                         Login
                             </Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity
+                                </TouchableCmp>
+                                <TouchableCmp
                                     style={styles.button}
                                     onPress={() => this.props.navigation.navigate("SignUp")}>
                                     <Text>
                                         Signup
                             </Text>
-                                </TouchableOpacity>
+                                </TouchableCmp>
                             </View>
-                        </View>
+                        </ScrollView>
                     </Card>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }
@@ -134,8 +151,10 @@ const styles = StyleSheet.create({
         fontSize: Dimensions.offset,
     },
     buttonContainer: {
+        flexDirection: 'row',
         marginVertical: Dimensions.offset,
-        justifyContent: 'center',
+        justifyContent: 'space-around',
+        marginHorizontal: 20,
         alignItems: 'center',
     },
     button: {

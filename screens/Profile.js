@@ -6,11 +6,8 @@ import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { Avatar } from 'react-native-paper';
 
 import HeaderButton from '../components/HeaderButton';
-import ProfilePic from '../assets/placeholder-profile.jpg';
 import Color from '../constants/Colors';
-const MyComponent = () => (
-    <Avatar.Image size={300} source={ProfilePic} />
-);
+
 
 const Profile = props => {
     const [profileImage, setProfileImage] = useState(firebase.auth().currentUser.photoURL)

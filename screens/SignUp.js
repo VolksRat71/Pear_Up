@@ -2,13 +2,21 @@ import React from 'react';
 import {
     StyleSheet, Text,
     TextInput, View,
-    TouchableOpacity, Button, ActivityIndicator
+    TouchableOpacity, ActivityIndicator,
+    TouchableNativeFeedback, ScrollView,
+    Platform, KeyboardAvoidingView
 } from 'react-native';
 import FirebaseSDK from '../config/FirebaseSDK';
 
 import Card from '../components/Card';
 import Color from '../constants/Colors';
 import Dimensions from '../constants/dimenions';
+
+let TouchableCmp = TouchableOpacity;
+
+if (Platform.OS === 'android' && Platform.Version >= 21) {
+    TouchableCmp = TouchableNativeFeedback;
+}
 
 class CreateAccount extends React.Component {
 
@@ -50,70 +58,85 @@ class CreateAccount extends React.Component {
             )
         }
         return (
-            <View style={styles.viewport}>
-                <View>
+            <KeyboardAvoidingView
+                behavior='padding'
+                keyboardVerticalOffset={60}
+                style={styles.viewport}
+            >
+                <View style={styles.viewSign}>
                     <Card style={styles.sigupCard}>
-                        <View style={styles.cardContent}>
-                            <View style={styles.cardSpacer}>
-                                <Text>
-                                    <Text style={styles.title}>
-                                        Email:{"  "}
+                        <ScrollView>
+                            <View style={styles.cardContent}>
+                                <View style={styles.cardSpacer}>
+                                    <Text>
+                                        <Text style={styles.title}>
+                                            Email:{"  "}
+                                        </Text>
+                                        <Text style={styles.disclaim}>
+                                            Email is for login purposes only
                                     </Text>
-                                    <Text style={styles.disclaim}>
-                                        Email is for login purposes only
                                     </Text>
-                                </Text>
-                            </View>
-                            <TextInput
-                                style={styles.nameInput}
-                                placeHolder="test3@gmail.com"
-                                onChangeText={this.onChangeTextEmail}
-                                value={this.state.email}
-                            />
-                            <View style={styles.cardSpacer}>
-                                <Text>
-                                    <Text style={styles.title}>
-                                        Password:{"  "}
-                                    </Text>
-                                    <Text style={styles.disclaim}>
-                                        Input must be 6 charactors minimum
-                                </Text>
-                                </Text>
-                            </View>
-                            <TextInput
-                                secureTextEntry={true}
-                                style={styles.nameInput}
-                                onChangeText={this.onChangeTextPassword}
-                                value={this.state.password}
-                            />
-                            <View style={styles.cardSpacer}>
-                                <Text>
-                                    <Text style={styles.title}>
-                                        Name:{"  "}
-                                    </Text>
-                                    <Text style={styles.disclaim}>
-                                        What everyone else will see
-                                    </Text>
-                                </Text>
+                                </View>
                                 <TextInput
                                     style={styles.nameInput}
-                                    onChangeText={this.onChangeTextName}
-                                    value={this.state.name}
+                                    placeHolder="test3@gmail.com"
+                                    onChangeText={this.onChangeTextEmail}
+                                    value={this.state.email}
+                                    autoCapitalize='none'
+                                    autoCorrect={false}
+                                    returnKeyType='next'
+                                    keyboardType='email-address'
                                 />
-                            </View>
-                            <View style={styles.buttonContainer}>
-                                <TouchableOpacity
-                                    style={styles.button}
-                                    onPress={this.onPressCreate}>
+                                <View style={styles.cardSpacer}>
                                     <Text>
-                                        Create Account
+                                        <Text style={styles.title}>
+                                            Password:{"  "}
+                                        </Text>
+                                        <Text style={styles.disclaim}>
+                                            Input must be 6 charactors minimum
+                                </Text>
                                     </Text>
-                                </TouchableOpacity>
+                                </View>
+                                <TextInput
+                                    secureTextEntry={true}
+                                    style={styles.nameInput}
+                                    onChangeText={this.onChangeTextPassword}
+                                    value={this.state.password}
+                                    returnKeyType='next'
+                                />
+                                <View style={styles.cardSpacer}>
+                                    <Text>
+                                        <Text style={styles.title}>
+                                            Name:{"  "}
+                                        </Text>
+                                        <Text style={styles.disclaim}>
+                                            What everyone else will see
+                                    </Text>
+                                    </Text>
+                                    <TextInput
+                                        style={styles.nameInput}
+                                        onChangeText={this.onChangeTextName}
+                                        value={this.state.name}
+                                        keyboardType='default'
+                                        autoCorrect={false}
+                                        returnKeyType='done'
+                                    />
+                                </View>
+                                <View style={styles.buttonContainer}>
+                                    <TouchableCmp
+                                        style={styles.button}
+                                        onPress={this.onPressCreate}>
+                                        <Text>
+                                            Create Account
+                                    </Text>
+                                    </TouchableCmp>
+                                </View>
                             </View>
-                        </View>
+                        </ScrollView>
                     </Card>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
+
         );
     }
 }
@@ -126,10 +149,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    signupCard: {
-        height: 300,
-        width: 300,
+    viewSign: {
+        height: 400,
+        width: 400,
         maxWidth: '80%',
+    },
+    signupCard: {
+        paddingVertical: 20
     },
     cardContent: {
         marginTop: Dimensions.offset,
