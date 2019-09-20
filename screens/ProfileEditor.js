@@ -1,17 +1,26 @@
 import React from 'react';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
+import firebase from 'firebase';
 import {
     StyleSheet, View,
     Button, ImageEditor,
+    TextInput, Text,
+    Image
 } from 'react-native';
 import FirebaseSDK from '../config/FirebaseSDK';
 
 class ProfileEditor extends React.Component {
 
+    state = {
+        imageURL: ''
+    }
+
     onImageUpload = async () => {
+        const user = firebase.auth().currentUser
+
         const { status: cameraRollPerm } = await Permissions.askAsync(
-            Permissions.CAMERA_ROLL
+            Permissions.CAMERA_ROLL, Permissions.CAMERA
         );
         try {
             // only if user allows permission to camera roll
@@ -52,6 +61,7 @@ class ProfileEditor extends React.Component {
                 });
                 let uploadUrl = await FirebaseSDK.uploadImage(resizedUri);
                 //let uploadUrl = await FirebaseSDK.uploadImageAsync(resizedUri);
+                await this.setState({ imageURL: pickerResult.uri })
                 await this.setState({ avatar: uploadUrl });
                 console.log(" - await upload successful url:" + uploadUrl);
                 console.log(" - await upload successful avatar state:" + this.state.avatar);
@@ -61,6 +71,9 @@ class ProfileEditor extends React.Component {
             console.log('onImageUpload error:' + err.message);
             alert('Upload image error:' + err.message);
         }
+        user.updateProfile({
+            photoURL: this.state.imageURL
+        })
     };
 
     render() {

@@ -1,23 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import firebase from 'firebase';
-import { View, StyleSheet, Text, Button } from 'react-native';
+import { View, StyleSheet, Text, Button, Image } from 'react-native';
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { Avatar, TextInput } from 'react-native-paper';
 
 import HeaderButton from '../components/HeaderButton';
 import ProfilePic from '../assets/placeholder-profile.jpg'
-const MyComponent = () => (
-    <Avatar.Image size={300} source={ProfilePic} />
-);
 
 const Profile = props => {
+    const [profileImage, setProfileImage] = useState(firebase.auth().currentUser.photoURL)
 
+    const imageHandler = () => {
+        setProfileImage(firebase.auth().currentUser.photoURL)
+    }
 
     return (
         <View style={styles.viewPort}>
             <View style={styles.profileScreen}>
                 <View style={styles.avatar}>
-                    <MyComponent />
+                    <Avatar.Image size={300} source={{ uri: profileImage }} />
                 </View>
                 <View style={styles.profileData}>
                     <Text style={styles.username}>Username: insert</Text>
@@ -28,6 +29,10 @@ const Profile = props => {
                             onPress={() => {
                                 props.navigation.navigate('ContentEditor')
                             }}
+                        />
+                         <Button 
+                            title='Reload Image'
+                            onPress={imageHandler}
                         />
                     </View>
                 </View>
