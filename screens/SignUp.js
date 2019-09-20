@@ -53,14 +53,14 @@ class CreateAccount extends React.Component {
         if (this.state.isLoading) {
             return (
                 <View style={styles.loading}>
-                    <ActivityIndicator size='large' color={Colors.primary} />
+                    <ActivityIndicator size='large' color={Color.p} />
                 </View>
             )
         }
         return (
             <KeyboardAvoidingView
                 behavior='padding'
-                keyboardVerticalOffset={60}
+                keyboardVerticalOffset={100}
                 style={styles.viewport}
             >
                 <View style={styles.viewSign}>

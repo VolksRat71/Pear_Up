@@ -1,16 +1,17 @@
 
 import React, { useState } from 'react';
 import firebase from 'firebase';
-import { View, StyleSheet, Text, Button, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, Button, Platform, TouchableOpacity } from 'react-native';
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { Avatar } from 'react-native-paper';
 
 import HeaderButton from '../components/HeaderButton';
 import Color from '../constants/Colors';
 
-
 const Profile = props => {
     const [profileImage, setProfileImage] = useState(firebase.auth().currentUser.photoURL)
+
+    const user = firebase.auth().currentUser
 
     const imageHandler = () => {
         setProfileImage(firebase.auth().currentUser.photoURL)
@@ -23,8 +24,8 @@ const Profile = props => {
                     <Avatar.Image size={300} source={{ uri: profileImage }} />
                 </View>
                 <View style={styles.profileData}>
-                    <Text style={styles.username}>Username: insert</Text>
-                    <Text style={styles.email}>Email: insert</Text>
+                    <Text style={styles.username}>{user.displayName}</Text>
+                    <Text style={styles.email}>{user.email}</Text>
                     <View style={styles.editButton}>
                         <TouchableOpacity
                             onPress={() => {
@@ -48,17 +49,19 @@ const Profile = props => {
 }
 
 Profile.navigationOptions = (navData) => {
-    const user = firebase.auth().currentUser
-
     return {
-        headerTitle: user.displayName,
+        headerTitle: 'Profile',
         headerRight: (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item title='Menu' iconName='ios-menu' onPress={() => {
                     navData.navigation.toggleDrawer();
                 }} />
             </HeaderButtons>
-        )
+        ),
+        headerStyle: {
+            backgroundColor: Platform.OS === 'android' ? Color.secondary : Color.primary
+        },
+        headerTintColor: Platform.OS === 'android' ? Color.primary : Color.secondary,    
     }
 }
 
