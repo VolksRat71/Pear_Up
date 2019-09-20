@@ -1,7 +1,6 @@
 import React from 'react'
 import {
-    Platform,
-    Text
+    Platform
 } from 'react-native'
 import {
     createAppContainer
@@ -10,20 +9,9 @@ import {
     createStackNavigator
 } from 'react-navigation-stack'
 import {
-    createBottomTabNavigator
-} from 'react-navigation-tabs'
-import {
     createDrawerNavigator
 } from 'react-navigation-drawer'
-import {
-    Ionicons
-} from '@expo/vector-icons'
-import {
-    HeaderButtons,
-    Item
-} from "react-navigation-header-buttons";
 
-import HeaderButton from '../components/HeaderButton'
 import Colors from '../constants/Colors'
 import GetStarted from '../screens/GetStarted'
 import Login from '../screens/Login'
@@ -37,8 +25,7 @@ const defaultStackNavOptions = {
     headerStyle: {
         backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
     },
-    headerTintColor: Platform.OS === 'android' ? 'purple' : Colors.primary,
-    headerTitle: 'A Screen',
+    headerTintColor: Platform.OS === 'android' ? 'purple' : Colors.secondary,
 }
 
 const CategoriesNavigator = createStackNavigator({
@@ -95,6 +82,8 @@ const MainNavigator = createStackNavigator({
     ContentEditor: {
         screen: ProfileEditorScreen
     }
+}, {
+    defaultNavigationOptions: defaultStackNavOptions
 })
 
 // const ProfileNavigator = createStackNavigator({
