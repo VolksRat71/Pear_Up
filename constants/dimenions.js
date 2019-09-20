@@ -10,4 +10,5 @@ export default {
     iOSshadowOpacity: 0.26,
     androidShadow: 8,
     borders: 1,
+    offset: 16,
 };

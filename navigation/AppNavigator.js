@@ -65,7 +65,7 @@ const MainNavigator = createStackNavigator({
     SignUp: {
         screen: SignUp,
         navigationOptions: {
-            headerTitle: 'Sign up here'
+            headerTitle: 'Welcome to Emit'
         }
     },
     ContentStart: {

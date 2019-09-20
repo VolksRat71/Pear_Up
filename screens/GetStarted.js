@@ -3,7 +3,6 @@ import {
     View,
     StyleSheet,
     Text,
-    ImageBackground,
     TouchableOpacity,
 } from 'react-native';
 
@@ -14,40 +13,33 @@ import Card from '../components/Card';
 const GetStarted = props => {
 
     return (
-        <ImageBackground
-            source={require('../assets/login_background.gif')}
-            style={styles.backGround}>
-            <View style={styles.viewPort}>
-                <Card style={styles.loginCard}>
-                    <View style={styles.welcomeMessage}>
-                        <Text style={{ fontSize: Dimension.headText, color: Color.primary }}>Welcome to Emit</Text>
-                    </View>
-                    <View style={styles.getStarted}>
-                        <TouchableOpacity
-                            onPress={() => props.navigation.replace('Login')}>
-                            <Text style={{ fontSize: Dimension.contentText, color: Color.accent }}>Get Started</Text>
-                        </TouchableOpacity>
-                    </View>
-                </Card>
+        <View style={styles.viewPort}>
+            <Card style={styles.loginCard}>
+                <View style={styles.welcomeMessage}>
+                    <Text style={{ fontSize: Dimension.headText, color: Color.primary }}>Welcome to Emit</Text>
+                </View>
+                <View style={styles.getStarted}>
+                    <TouchableOpacity
+                        onPress={() => props.navigation.replace('Login')}>
+                        <Text style={{ fontSize: Dimension.contentText, color: Color.accent1 }}>Get Started</Text>
+                    </TouchableOpacity>
+                </View>
+            </Card>
 
-            </View>
-        </ImageBackground>
+        </View>
     )
 }
 
 
 const styles = StyleSheet.create({
-    backGround: {
-        height: '100%'
-    },
     viewPort: {
         flex: 1,
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: Color.primary,
     },
     loginCard: {
-        opacity: .8,
         height: 225,
         width: 300,
         maxWidth: '80%',
