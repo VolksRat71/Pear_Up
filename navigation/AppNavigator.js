@@ -23,9 +23,9 @@ import ChatScreen from '../screens/Chat'
 
 const defaultStackNavOptions = {
     headerStyle: {
-        backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
+        backgroundColor: Platform.OS === 'android' ? Colors.secondary : Colors.primary
     },
-    headerTintColor: Platform.OS === 'android' ? 'purple' : Colors.secondary,
+    headerTintColor: Platform.OS === 'android' ? Colors.primary : Colors.secondary,
 }
 
 const CategoriesNavigator = createStackNavigator({

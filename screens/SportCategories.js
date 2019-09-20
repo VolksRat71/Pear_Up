@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, FlatList, View, ActivityIndicator } from 'react-native'
+import { StyleSheet, FlatList, View, Platform } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
 import { CATEGORIES } from '../data/constant-data';
@@ -44,7 +44,11 @@ CategoriesScreen.navigationOptions = (navData) => {
                     navData.navigation.toggleDrawer();
                 }} />
             </HeaderButtons>
-        )
+        ),
+        headerStyle: {
+            backgroundColor: Platform.OS === 'android' ? Colors.secondary : Colors.primary
+        },
+        headerTintColor: Platform.OS === 'android' ? Colors.primary : Colors.secondary,    
     }
 }
 
