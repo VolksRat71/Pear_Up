@@ -2,11 +2,13 @@ import React from 'react';
 import {
     StyleSheet, Text,
     TextInput, View,
-    Button,
+    Button, ActivityIndicator
 } from 'react-native';
 import FirebaseSDK from '../config/FirebaseSDK';
-import { FirebaseApp } from '@firebase/app-types';
-import { FirebaseAuth } from '@firebase/auth-types';
+// import { FirebaseApp } from '@firebase/app-types';
+// import { FirebaseAuth } from '@firebase/auth-types';
+
+import Colors from '../constants/Colors'
 
 class CreateAccount extends React.Component {
 
@@ -15,10 +17,12 @@ class CreateAccount extends React.Component {
         email: '',
         password: '',
         avatar: '',
+        isLoading: false
     };
 
     onPressCreate = async () => {
         console.log('create account... email:' + this.state.email);
+        this.setState({ isLoading: true })
         try {
             const user = {
                 name: this.state.name,
@@ -30,6 +34,7 @@ class CreateAccount extends React.Component {
         } catch ({ message }) {
             console.log('create account failed. catch error:' + message);
         }
+        this.setState({ isLoading: false })
     };
 
     onChangeTextEmail = email => this.setState({ email });
@@ -37,6 +42,13 @@ class CreateAccount extends React.Component {
     onChangeTextName = name => this.setState({ name });
 
     render() {
+        if (this.state.isLoading) {
+            return (
+                <View style={styles.loading}>
+                    <ActivityIndicator size='large' color={Colors.primary} />
+                </View>
+            )
+        }
         return (
             <View>
                 <Text style={styles.title}>Email: Email is for login purposes only</Text>
@@ -88,6 +100,11 @@ const styles = StyleSheet.create({
         marginLeft: offset,
         fontSize: 42,
     },
+    loading: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
 });
 
 export default CreateAccount;
