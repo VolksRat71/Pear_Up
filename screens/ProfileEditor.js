@@ -1,14 +1,21 @@
 import React from 'react';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
-import firebase from 'firebase';
+import { Avatar } from 'react-native-paper';
 import {
     StyleSheet, View,
-    Button, ImageEditor,
-    TextInput, Text,
-    Image
+    TouchableOpacity, ImageEditor,
+    Text, TextInput, Image
 } from 'react-native';
+import firebase from 'firebase';
+
+import ProfilePic from '../assets/placeholder-profile.jpg'
+import Color from '../constants/Colors';
+const MyComponent = () => (
+    <Avatar.Image size={300} source={ProfilePic} />
+);
 import FirebaseSDK from '../config/FirebaseSDK';
+import Colors from '../constants/Colors';
 
 class ProfileEditor extends React.Component {
 
@@ -80,11 +87,23 @@ class ProfileEditor extends React.Component {
         return (
             <View style={styles.viewPort}>
                 <View style={styles.profileEditorScreen}>
-                    <Button
-                        title="Upload Avatar Image"
-                        style={styles.buttonText}
-                        onPress={this.onImageUpload}
-                    />
+                    <View style={styles.avatar}>
+                        <MyComponent />
+                    </View>
+                    <View style={styles.profileData}>
+                        <TouchableOpacity
+                            onPress={this.onImageUpload}>
+                            <Text style={{ color: "#0000FF" }}>
+                                Upload an Avatar
+                            </Text>
+                        </TouchableOpacity>
+                        <Text style={styles.username}>Username:{" "}
+                            <TextInput
+                            />
+                        </Text>
+                        <Text style={styles.email}>Email: insert</Text>
+
+                    </View>
                 </View>
             </View>
         )
@@ -95,11 +114,27 @@ const styles = StyleSheet.create({
     viewPort: {
         flex: 1,
         height: '100%',
+        backgroundColor: Color.primary,
     },
     profileEditorScreen: {
         flex: 1,
         height: '100%',
         justifyContent: 'center',
+        alignItems: 'center',
+    },
+    avatar: {
+        paddingBottom: 15,
+    },
+    username: {
+        color: Color.accent1,
+        fontWeight: 'bold',
+        fontSize: 20,
+    },
+    email: {
+        color: Color.accent2,
+        fontSize: 15,
+    },
+    profileData: {
         alignItems: 'center',
     },
 });

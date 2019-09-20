@@ -1,10 +1,11 @@
 import React from 'react'
-import { StyleSheet, FlatList, ActivityIndicator } from 'react-native'
+import { StyleSheet, FlatList, View, ActivityIndicator } } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
 import { CATEGORIES } from '../data/constant-data';
 import HeaderButton from '../components/HeaderButton'
 import TouchableComponent from '../components/TouchableCmp'
+import Colors from '../constants/Colors';
 
 const CategoriesScreen = props => {
     const renderTouchItem = (itemData) => {
@@ -23,18 +24,20 @@ const CategoriesScreen = props => {
     }
 
     return (
-        <FlatList
-            keyExtractor={item => item.id}
-            data={CATEGORIES}
-            renderItem={renderTouchItem}
-            numColumns={2}
-        />
+        <View style={styles.viewport}>
+            <FlatList
+                keyExtractor={item => item.id}
+                data={CATEGORIES}
+                renderItem={renderTouchItem}
+                numColumns={2}
+            />
+        </View>
     )
 }
 
 CategoriesScreen.navigationOptions = (navData) => {
     return {
-        headerTitle: 'Sport Categories',
+        headerTitle: 'Pick a Chat',
         headerRight: (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item title='Menu' iconName='ios-menu' onPress={() => {
@@ -44,5 +47,12 @@ CategoriesScreen.navigationOptions = (navData) => {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    viewport: {
+        flex: 1,
+        backgroundColor: Colors.primary
+    }
+})
 
 export default CategoriesScreen

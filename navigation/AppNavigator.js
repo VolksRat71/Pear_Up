@@ -1,11 +1,27 @@
 import React from 'react'
-import { Platform, Text } from 'react-native'
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack'
-import { createBottomTabNavigator } from 'react-navigation-tabs'
-import { createDrawerNavigator } from 'react-navigation-drawer'
-import { Ionicons } from '@expo/vector-icons'
-import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import {
+    Platform,
+    Text
+} from 'react-native'
+import {
+    createAppContainer
+} from 'react-navigation';
+import {
+    createStackNavigator
+} from 'react-navigation-stack'
+import {
+    createBottomTabNavigator
+} from 'react-navigation-tabs'
+import {
+    createDrawerNavigator
+} from 'react-navigation-drawer'
+import {
+    Ionicons
+} from '@expo/vector-icons'
+import {
+    HeaderButtons,
+    Item
+} from "react-navigation-header-buttons";
 
 import HeaderButton from '../components/HeaderButton'
 import Colors from '../constants/Colors'
@@ -21,8 +37,7 @@ const defaultStackNavOptions = {
     headerStyle: {
         backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
     },
-    headerTintColor:
-        Platform.OS === 'android' ? 'purple' : Colors.primary,
+    headerTintColor: Platform.OS === 'android' ? 'purple' : Colors.primary,
     headerTitle: 'A Screen',
 }
 
@@ -38,7 +53,7 @@ const ContentDrawer = createDrawerNavigator({
     Categories: {
         screen: CategoriesNavigator,
         navigationOptions: {
-            drawerLabel: 'Sport Categories'
+            drawerLabel: 'Chatrooms'
         }
     },
     Profile: {
@@ -65,7 +80,7 @@ const MainNavigator = createStackNavigator({
     SignUp: {
         screen: SignUp,
         navigationOptions: {
-            headerTitle: 'Sign up here'
+            headerTitle: 'Welcome to Emit'
         }
     },
     ContentStart: {

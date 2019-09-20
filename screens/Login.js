@@ -2,9 +2,13 @@ import React from 'react';
 import {
     StyleSheet, Text,
     TextInput, View,
-    Button
+    Button, TouchableOpacity
 } from 'react-native';
 import FirebaseSDK from '../config/FirebaseSDK';
+
+import Card from '../components/Card';
+import Color from '../constants/Colors';
+import Dimensions from '../constants/dimenions';
 
 class Login extends React.Component {
 
@@ -52,32 +56,43 @@ class Login extends React.Component {
 
     render() {
         return (
-            <View>
-                <Text style={styles.title}>Email:</Text>
-                <TextInput
-                    style={styles.nameInput}
-                    placeHolder="test3@gmail.com"
-                    onChangeText={this.onChangeTextEmail}
-                    value={this.state.email}
-                />
-                <Text style={styles.title}>Password:</Text>
-                <TextInput
-                    secureTextEntry={true}
-                    style={styles.nameInput}
-                    onChangeText={this.onChangeTextPassword}
-                    value={this.state.password}
-                />
-                <Button
-                    title="Login 2"
-                    style={styles.buttonText}
-                    onPress={this.onPressLogin}
-                />
-
-                <Button
-                    title="Sign"
-                    style={styles.buttonText}
-                    onPress={() => this.props.navigation.navigate("SignUp")}
-                />
+            <View style={styles.viewport}>
+                <View style={styles.loginContainer}>
+                    <Card style={styles.loginCard}>
+                        <View>
+                            <Text style={styles.title}>Email:</Text>
+                            <TextInput
+                                style={styles.nameInput}
+                                placeHolder="test3@gmail.com"
+                                onChangeText={this.onChangeTextEmail}
+                                value={this.state.email}
+                            />
+                            <Text style={styles.title}>Password:</Text>
+                            <TextInput
+                                secureTextEntry={true}
+                                style={styles.nameInput}
+                                onChangeText={this.onChangeTextPassword}
+                                value={this.state.password}
+                            />
+                            <View style={styles.buttonContainer}>
+                                <TouchableOpacity
+                                    style={styles.button}
+                                    onPress={this.onPressLogin}>
+                                    <Text>
+                                        Login
+                            </Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    style={styles.button}
+                                    onPress={() => this.props.navigation.navigate("SignUp")}>
+                                    <Text>
+                                        Signup
+                            </Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </Card>
+                </View>
             </View>
         );
     }
@@ -88,25 +103,44 @@ Login.navigationOptions = {
     headerVisible: false
 }
 
-const offset = 16;
 const styles = StyleSheet.create({
+    viewport: {
+        height: '100%',
+        flex: 1,
+        backgroundColor: Color.primary,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    loginCard: {
+        height: 300,
+        width: 300,
+        maxWidth: '80%',
+    },
+    loginContainer: {
+        paddingTop: 60,
+    },
     title: {
-        marginTop: offset,
-        marginLeft: offset,
-        fontSize: offset,
+        marginTop: Dimensions.offset,
+        marginLeft: Dimensions.offset,
+        fontSize: Dimensions.offset,
+        color: Color.primary,
     },
     nameInput: {
-        height: offset * 2,
-        margin: offset,
-        paddingHorizontal: offset,
-        borderColor: '#111111',
-        borderWidth: 1,
-        fontSize: offset,
+        height: Dimensions.offset * 2,
+        margin: Dimensions.offset,
+        paddingHorizontal: Dimensions.offset / 2,
+        borderColor: Color.accent2,
+        borderBottomWidth: 1,
+        fontSize: Dimensions.offset,
     },
-    buttonText: {
-        marginLeft: offset,
-        fontSize: 42,
+    buttonContainer: {
+        marginVertical: Dimensions.offset,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
+    button: {
+        color: Color.primary
+    }
 });
 
 export default Login;
