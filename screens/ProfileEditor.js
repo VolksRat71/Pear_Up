@@ -5,8 +5,9 @@ import { Avatar } from 'react-native-paper';
 import {
     StyleSheet, View,
     TouchableOpacity, ImageEditor,
-    Text, TextInput
+    Text, TextInput, Image
 } from 'react-native';
+import firebase from 'firebase';
 
 import ProfilePic from '../assets/placeholder-profile.jpg'
 import Color from '../constants/Colors';
@@ -18,9 +19,15 @@ import Colors from '../constants/Colors';
 
 class ProfileEditor extends React.Component {
 
+    state = {
+        imageURL: ''
+    }
+
     onImageUpload = async () => {
+        const user = firebase.auth().currentUser
+
         const { status: cameraRollPerm } = await Permissions.askAsync(
-            Permissions.CAMERA_ROLL
+            Permissions.CAMERA_ROLL, Permissions.CAMERA
         );
         try {
             // only if user allows permission to camera roll
@@ -61,6 +68,7 @@ class ProfileEditor extends React.Component {
                 });
                 let uploadUrl = await FirebaseSDK.uploadImage(resizedUri);
                 //let uploadUrl = await FirebaseSDK.uploadImageAsync(resizedUri);
+                await this.setState({ imageURL: pickerResult.uri })
                 await this.setState({ avatar: uploadUrl });
                 console.log(" - await upload successful url:" + uploadUrl);
                 console.log(" - await upload successful avatar state:" + this.state.avatar);
@@ -70,6 +78,9 @@ class ProfileEditor extends React.Component {
             console.log('onImageUpload error:' + err.message);
             alert('Upload image error:' + err.message);
         }
+        user.updateProfile({
+            photoURL: this.state.imageURL
+        })
     };
 
     render() {
