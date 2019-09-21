@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
 import firebase from 'firebase';
-import { View, StyleSheet, Text, Platform, TouchableOpacity, TouchableNativeFeedback } from 'react-native';
+import { View, StyleSheet, Text, Platform, TouchableOpacity } from 'react-native';
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { Avatar } from 'react-native-paper';
 
 import HeaderButton from '../components/HeaderButton';
 import Color from '../constants/Colors';
-
-let TouchableCmp = TouchableOpacity
-
-if (Platform.OS === 'android' && Platform.Version >= 21) {
-    TouchableCmp = TouchableNativeFeedback
-}
 
 const Profile = props => {
     const [profileImage, setProfileImage] = useState(firebase.auth().currentUser.photoURL)
@@ -25,17 +19,17 @@ const Profile = props => {
     return (
         <View style={styles.viewPort}>
             <View style={styles.profileScreen}>
-                <TouchableCmp
+                <TouchableOpacity
                     style={styles.avatar}
                     onPress={profileHandler}
                 >
                     <Avatar.Image size={300} source={{ uri: profileImage }} />
-                </TouchableCmp>
+                </TouchableOpacity>
                 <View style={styles.profileData}>
                     <Text style={styles.username}>{user.displayName}</Text>
                     <Text style={styles.email}>{user.email}</Text>
                     <View style={styles.editButton}>
-                        <TouchableCmp
+                        <TouchableOpacity
                             onPress={() => {
                                 props.navigation.navigate('ContentEditor', {
                                     currentUserId: user.uid,
@@ -47,7 +41,7 @@ const Profile = props => {
                             <Text style={{ color: "#0000FF" }}>
                                 Edit Profile
                             </Text>
-                        </TouchableCmp>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
