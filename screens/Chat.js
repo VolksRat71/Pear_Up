@@ -1,7 +1,18 @@
 import React from 'react';
-import { GiftedChat } from 'react-native-gifted-chat'; // 0.3.0
+import { YellowBox } from 'react-native';
+import { GiftedChat } from 'react-native-gifted-chat';
+import _ from 'lodash';
 
 import FirebaseSDK from '../config/FirebaseSDK';
+
+
+YellowBox.ignoreWarnings(['Setting a timer']);
+const _console = _.clone(console);
+console.warn = message => {
+    if (message.indexOf('Setting a timer') <= -1) {
+        _console.warn(message);
+    }
+};
 
 type Props = {
     name?: string,
