@@ -45,9 +45,7 @@ class Chat extends React.Component {
                     showAvatarForEveryMessage={true}
                     messages={this.state.messages}
                     onSend={FirebaseSDK.send}
-                    user={{
-                        _id: this.user_id
-                    }}
+                    user={this.user}
                 />
                 {Platform.OS === 'android' ? <KeyboardSpacer /> : null}
                 {Platform.OS === 'android' ? <View style={{ paddingBottom: 50 }}></View> : null}
