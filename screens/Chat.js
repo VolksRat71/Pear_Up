@@ -2,7 +2,7 @@ import React from 'react';
 import { YellowBox } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 import _ from 'lodash';
-
+import firebase from 'firebase';
 import FirebaseSDK from '../config/FirebaseSDK';
 
 
@@ -14,13 +14,13 @@ console.warn = message => {
     }
 };
 
-type Props = {
-    name?: string,
-    email?: string,
-    avatar?: string,
-};
+// this.Props = {
+//     name?: string,
+//     email?: string,
+//     avatar?: string,
+// };
 
-class Chat extends React.Component<Props> {
+class Chat extends React.Component {
 
     constructor(props) {
         super(props);
@@ -31,13 +31,16 @@ class Chat extends React.Component<Props> {
 
     state = {
         messages: [],
+        name: firebase.auth().currentUser.displayName,
+        email: firebase.auth().currentUser.email,
+        avatar: firebase.auth().currentUser.photoURL
     };
 
     get user() {
         return {
-            name: this.props.navigation.state.params.name,
-            email: this.props.navigation.state.params.email,
-            avatar: this.props.navigation.state.params.avatar,
+            name: this.state.name,
+            email: this.state.email,
+            avatar: this.state.avatar,
             id: FirebaseSDK.uid,
             _id: FirebaseSDK.uid, // need for gifted-chat
         };

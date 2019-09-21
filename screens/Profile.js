@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import firebase from 'firebase';
 import { View, StyleSheet, Text, Button, Platform, TouchableOpacity } from 'react-native';

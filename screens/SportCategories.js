@@ -7,6 +7,8 @@ import HeaderButton from '../components/HeaderButton'
 import TouchableComponent from '../components/TouchableCmp'
 import Colors from '../constants/Colors';
 
+
+
 const CategoriesScreen = props => {
     const renderTouchItem = (itemData) => {
         return (
