@@ -2,6 +2,7 @@ import React from 'react';
 import { YellowBox, Text, Platform, View } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 import { Avatar } from 'react-native-paper';
+import KeyboardSpacer from "react-native-keyboard-spacer";
 
 import _ from 'lodash';
 import firebase from 'firebase';
@@ -40,19 +41,20 @@ class Chat extends React.Component {
 
     render() {
         return (
-            <GiftedChat
-                messages={this.state.messages}
-                onSend={FirebaseSDK.send}
-                user={{
-                    _id: this.user._id,
-                    name: this.user.name,
-                    avatar: this.user.avatar
-                }}
-                showUserAvatar={true}
-            />
-                          {Platform.OS === 'android' ? <KeyboardSpacer /> : null}
+            <View style={{ flex: 1 }}>
+                <GiftedChat
+                    messages={this.state.messages}
+                    onSend={FirebaseSDK.send}
+                    user={{
+                        _id: this.user._id,
+                        name: this.user.name,
+                        avatar: this.user.avatar
+                    }}
+                    showUserAvatar={true}
+                />
+                {Platform.OS === 'android' ? <KeyboardSpacer /> : null}
                 {Platform.OS === 'android' ? <View style={{ paddingBottom: 50 }}></View> : null}
-
+            </View>
         );
     }
 
