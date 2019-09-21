@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import firebase from 'firebase';
-import { View, StyleSheet, Text, Button, Platform, TouchableOpacity, TouchableNativeFeedback } from 'react-native';
+import { View, StyleSheet, Text, Platform, TouchableOpacity, TouchableNativeFeedback } from 'react-native';
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { Avatar } from 'react-native-paper';
 
@@ -15,15 +15,11 @@ if (Platform.OS === 'android' && Platform.Version >= 21) {
 
 const Profile = props => {
     const [profileImage, setProfileImage] = useState(firebase.auth().currentUser.photoURL)
-    const [profileName, setProfileName] = useState(firebase.auth().currentUser.displayName)
-    const [profileEmail, setProfileEmail] = useState(firebase.auth().currentUser.email)
 
     const user = firebase.auth().currentUser
 
     const profileHandler = () => {
         setProfileImage(firebase.auth().currentUser.photoURL)
-        setProfileName(firebase.auth().currentUser.displayName)
-        setProfileEmail(firebase.auth().currentUser.email)
     }
 
     return (
@@ -36,8 +32,8 @@ const Profile = props => {
                     <Avatar.Image size={300} source={{ uri: profileImage }} />
                 </TouchableCmp>
                 <View style={styles.profileData}>
-                    <Text style={styles.username}>{profileName}</Text>
-                    <Text style={styles.email}>{profileEmail}</Text>
+                    <Text style={styles.username}>{user.displayName}</Text>
+                    <Text style={styles.email}>{user.email}</Text>
                     <View style={styles.editButton}>
                         <TouchableCmp
                             onPress={() => {
