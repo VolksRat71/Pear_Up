@@ -1,7 +1,8 @@
 import React from 'react';
-import { YellowBox, View, Platform } from 'react-native';
+import { YellowBox, Text, Platform, View } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
-import KeyboardSpacer from 'react-native-keyboard-spacer';
+import { Avatar } from 'react-native-paper';
+
 import _ from 'lodash';
 import firebase from 'firebase';
 import FirebaseSDK from '../config/FirebaseSDK';
@@ -16,7 +17,6 @@ console.warn = message => {
 };
 
 class Chat extends React.Component {
-
     constructor(props) {
         super(props);
     }
@@ -40,16 +40,19 @@ class Chat extends React.Component {
 
     render() {
         return (
-            <View style={{ flex: 1 }}>
-                <GiftedChat
-                    showAvatarForEveryMessage={true}
-                    messages={this.state.messages}
-                    onSend={FirebaseSDK.send}
-                    user={this.user}
-                />
-                {Platform.OS === 'android' ? <KeyboardSpacer /> : null}
+            <GiftedChat
+                messages={this.state.messages}
+                onSend={FirebaseSDK.send}
+                user={{
+                    _id: this.user._id,
+                    name: this.user.name,
+                    avatar: this.user.avatar
+                }}
+                showUserAvatar={true}
+            />
+                          {Platform.OS === 'android' ? <KeyboardSpacer /> : null}
                 {Platform.OS === 'android' ? <View style={{ paddingBottom: 50 }}></View> : null}
-            </View>
+
         );
     }
 
