@@ -1,45 +1,57 @@
 import React, { useState } from 'react';
 import firebase from 'firebase';
-import { View, StyleSheet, Text, Button, Platform, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, Button, Platform, TouchableOpacity, TouchableNativeFeedback } from 'react-native';
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { Avatar } from 'react-native-paper';
 
 import HeaderButton from '../components/HeaderButton';
 import Color from '../constants/Colors';
 
+let TouchableCmp = TouchableOpacity
+
+if (Platform.OS === 'android' && Platform.Version >= 21) {
+    TouchableCmp = TouchableNativeFeedback
+}
+
 const Profile = props => {
     const [profileImage, setProfileImage] = useState(firebase.auth().currentUser.photoURL)
+    const [profileName, setProfileName] = useState(firebase.auth().currentUser.displayName)
+    const [profileEmail, setProfileEmail] = useState(firebase.auth().currentUser.email)
 
     const user = firebase.auth().currentUser
 
-    const imageHandler = () => {
+    const profileHandler = () => {
         setProfileImage(firebase.auth().currentUser.photoURL)
+        setProfileName(firebase.auth().currentUser.displayName)
+        setProfileEmail(firebase.auth().currentUser.email)
     }
 
     return (
         <View style={styles.viewPort}>
             <View style={styles.profileScreen}>
-                <View style={styles.avatar}>
+                <TouchableCmp
+                    style={styles.avatar}
+                    onPress={profileHandler}
+                >
                     <Avatar.Image size={300} source={{ uri: profileImage }} />
-                </View>
+                </TouchableCmp>
                 <View style={styles.profileData}>
-                    <Text style={styles.username}>{user.displayName}</Text>
-                    <Text style={styles.email}>{user.email}</Text>
+                    <Text style={styles.username}>{profileName}</Text>
+                    <Text style={styles.email}>{profileEmail}</Text>
                     <View style={styles.editButton}>
-                        <TouchableOpacity
+                        <TouchableCmp
                             onPress={() => {
-                                props.navigation.navigate('ContentEditor')
-
+                                props.navigation.navigate('ContentEditor', {
+                                    currentUserId: user.uid,
+                                    currentUserName: user.displayName,
+                                    currentUserEmail: user.email,
+                                    currentUserAvatar: user.photoURL
+                                })
                             }}>
                             <Text style={{ color: "#0000FF" }}>
                                 Edit Profile
                             </Text>
-                        </TouchableOpacity>
-                         <Button 
-                            title='Reload Image'
-                            onPress={imageHandler}
-                        />
-
+                        </TouchableCmp>
                     </View>
                 </View>
             </View>
@@ -60,7 +72,7 @@ Profile.navigationOptions = (navData) => {
         headerStyle: {
             backgroundColor: Platform.OS === 'android' ? Color.secondary : Color.primary
         },
-        headerTintColor: Platform.OS === 'android' ? Color.primary : Color.secondary,    
+        headerTintColor: Platform.OS === 'android' ? Color.primary : Color.secondary,
     }
 }
 
