@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import Dimension from '../constants/dimenions';
-import Color from '../constants/color';
+import Color from '../constants/Colors';
 
 const Card = props => {
     return <View style={{ ...styles.card, ...props.style }}>{props.children}</View>

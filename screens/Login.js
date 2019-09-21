@@ -1,77 +1,164 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-    View,
-    StyleSheet,
-    Text,
-    ImageBackground,
+    StyleSheet, Text,
+    TextInput, View,
     TouchableOpacity,
+    KeyboardAvoidingView,
+    ScrollView, TouchableNativeFeedback,
+    Platform
 } from 'react-native';
-import Color from '../constants/color'
-import Dimension from '../constants/dimenions'
+import FirebaseSDK from '../config/FirebaseSDK';
+
 import Card from '../components/Card';
-import LoginModal from '../components/LoginModal';
+import Color from '../constants/Colors';
+import Dimensions from '../constants/dimenions';
 
-const Login = props => {
+let TouchableCmp = TouchableOpacity;
 
-    const [isLogin, setIsLogin] = useState(false);
+if (Platform.OS === 'android' && Platform.Version >= 21) {
+    TouchableCmp = TouchableNativeFeedback;
+}
 
-    const closeModal = () => {
-        setIsLogin(false);
+class Login extends React.Component {
+
+    state = {
+        name: '',
+        email: '',
+        password: '',
+        avatar: '',
+    };
+
+    // using Fire.js
+    onPressLogin = async () => {
+        console.log('pressing login... email:' + this.state.email);
+        const user = {
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password,
+            avatar: this.state.avatar,
+        };
+
+        const response = FirebaseSDK.login(
+            user,
+            this.loginSuccess,
+            this.loginFailed
+        );
+    };
+
+    loginSuccess = () => {
+        console.log('login successful');
+        this.props.navigation.replace('ContentStart', {
+            name: this.state.name,
+            email: this.state.email,
+            avatar: this.state.avatar,
+        });
+    };
+    loginFailed = () => {
+        console.warn('login failed ***');
+        alert('Login failure. Please tried again.');
+    };
+
+
+    onChangeTextEmail = email => this.setState({ email });
+    onChangeTextPassword = password => this.setState({ password });
+
+
+    render() {
+        return (
+            <KeyboardAvoidingView
+                behavior='padding'
+                keyboardVerticalOffset={50}
+                style={styles.viewport}
+            >
+                <View style={styles.loginContainer}>
+                    <Card style={styles.loginCard}>
+                        <ScrollView>
+                            <Text style={styles.title}>Email:</Text>
+                            <TextInput
+                                style={styles.nameInput}
+                                placeHolder="test3@gmail.com"
+                                onChangeText={this.onChangeTextEmail}
+                                value={this.state.email}
+                                autoCapitalize='none'
+                                autoCorrect={false}
+                                returnKeyType='next'
+                                keyboardType='email-address'
+                            />
+                            <Text style={styles.title}>Password:</Text>
+                            <TextInput
+                                secureTextEntry={true}
+                                style={styles.nameInput}
+                                onChangeText={this.onChangeTextPassword}
+                                value={this.state.password}
+                            />
+                            <View style={styles.buttonContainer}>
+                                <TouchableCmp
+                                    style={styles.button}
+                                    onPress={this.onPressLogin}>
+                                    <Text>
+                                        Login
+                            </Text>
+                                </TouchableCmp>
+                                <TouchableCmp
+                                    style={styles.button}
+                                    onPress={() => this.props.navigation.navigate("SignUp")}>
+                                    <Text>
+                                        Signup
+                            </Text>
+                                </TouchableCmp>
+                            </View>
+                        </ScrollView>
+                    </Card>
+                </View>
+            </KeyboardAvoidingView>
+        );
     }
+}
 
-    return (
-        <ImageBackground
-            source={require('../assets/login_background.gif')}
-            style={styles.backGround}>
-            <View style={styles.viewPort}>
-                <Card style={styles.loginCard}>
-                    <View style={styles.welcomeMessage}>
-                        <Text style={{ fontSize: Dimension.headText, color: Color.primary }}>Welcome to Emit</Text>
-                    </View>
-                    <View style={styles.getStarted}>
-                        <TouchableOpacity
-                            onPress={() => setIsLogin(true)}>
-                            <Text style={{ fontSize: Dimension.contentText, color: Color.accent }}>Get Started</Text>
-                        </TouchableOpacity>
-                    </View>
-                </Card>
-                <LoginModal
-                    visible={isLogin}
-                    onClose={closeModal} />
-            </View>
-        </ImageBackground>
-    )
+Login.navigationOptions = {
+    headerMode: 'none',
+    headerVisible: false
 }
 
 const styles = StyleSheet.create({
-    backGround: {
-        height: '100%'
-    },
-    viewPort: {
-        flex: 1,
+    viewport: {
         height: '100%',
+        flex: 1,
+        backgroundColor: Color.primary,
         justifyContent: 'center',
         alignItems: 'center',
     },
     loginCard: {
-        opacity: .8,
-        height: 225,
+        height: 300,
         width: 300,
         maxWidth: '80%',
     },
-    welcomeMessage: {
-        borderBottomWidth: Dimension.borders,
-        borderBottomColor: Color.borders,
-        paddingBottom: 15,
-        alignItems: 'center',
-        // Font style stated with <Text>
+    loginContainer: {
+        paddingTop: 60,
     },
-    getStarted: {
+    title: {
+        marginTop: Dimensions.offset,
+        marginLeft: Dimensions.offset,
+        fontSize: Dimensions.offset,
+        color: Color.primary,
+    },
+    nameInput: {
+        height: Dimensions.offset * 2,
+        margin: Dimensions.offset,
+        paddingHorizontal: Dimensions.offset / 2,
+        borderColor: Color.accent2,
+        borderBottomWidth: 1,
+        fontSize: Dimensions.offset,
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        marginVertical: Dimensions.offset,
+        justifyContent: 'space-around',
+        marginHorizontal: 20,
         alignItems: 'center',
-        height: '100%',
-        width: '100%',
-        paddingTop: 65
-        // Font style stated with <Text>
+    },
+    button: {
+        color: Color.primary
     }
 });
 
