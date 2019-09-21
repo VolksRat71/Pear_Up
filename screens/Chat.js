@@ -1,6 +1,8 @@
 import React from 'react';
-import { YellowBox } from 'react-native';
+import { YellowBox, Text } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
+import { Avatar } from 'react-native-paper';
+
 import _ from 'lodash';
 import firebase from 'firebase';
 import FirebaseSDK from '../config/FirebaseSDK';
@@ -21,7 +23,6 @@ console.warn = message => {
 // };
 
 class Chat extends React.Component {
-
     constructor(props) {
         super(props);
     }
@@ -51,7 +52,12 @@ class Chat extends React.Component {
             <GiftedChat
                 messages={this.state.messages}
                 onSend={FirebaseSDK.send}
-                user={this.user}
+                user={{
+                    _id: this.user._id,
+                    name: this.user.name,
+                    avatar: this.user.avatar
+                }}
+                showUserAvatar={true}
             />
         );
     }
