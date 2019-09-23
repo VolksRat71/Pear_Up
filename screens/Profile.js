@@ -13,10 +13,8 @@ const Profile = props => {
 
     const user = firebase.auth().currentUser
 
-    const profileHandler = async () => {
-        await setProfileImage(firebase.auth().currentUser.photoURL)
-        await setProfileName(firebase.auth().currentUser.displayName)
-        await setProfileEmail(firebase.auth().currentUser.email)
+    const profileHandler = () => {
+        setProfileImage(firebase.auth().currentUser.photoURL)
     }
 
     return (
@@ -53,11 +51,13 @@ const Profile = props => {
 }
 
 Profile.navigationOptions = (navData) => {
+    menuIcon = Platform.OS === 'android' ? 'md-menu' : 'ios-menu'
+
     return {
         headerTitle: 'Profile',
-        headerRight: (
+        headerLeft: (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
-                <Item title='Menu' iconName='ios-menu' onPress={() => {
+                <Item title='Menu' iconName={menuIcon} onPress={() => {
                     navData.navigation.toggleDrawer();
                 }} />
             </HeaderButtons>
