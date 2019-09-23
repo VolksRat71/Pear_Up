@@ -5,8 +5,10 @@ import { Avatar, Button } from 'react-native-paper';
 import {
     StyleSheet, View,
     TouchableOpacity, ImageEditor,
-    Text, TextInput, Image
+    Text, Platform
 } from 'react-native';
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import HeaderButton from '../components/HeaderButton';
 import firebase from 'firebase';
 
 import ProfilePic from '../assets/placeholder-profile.jpg'
@@ -100,6 +102,22 @@ class ProfileEditor extends React.Component {
                     </View>
                 </View>
             </View>
+        )
+    }
+}
+
+ProfileEditor.navigationOptions = navData => {
+    logIcon = Platform.OS === 'android' ? 'md-log-out' : 'ios-log-out'
+
+    return {
+        headerTitle: 'Profile Editor',
+        headerRight: (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item title='log-out' iconName={logIcon} onPress={() => {
+                    firebase.auth().signOut()
+                    navData.navigation.replace('GetStarted')
+                }} />
+            </HeaderButtons>
         )
     }
 }
