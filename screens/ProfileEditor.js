@@ -97,12 +97,6 @@ class ProfileEditor extends React.Component {
                                 Upload an Avatar
                             </Text>
                         </TouchableOpacity>
-                        <Text style={styles.username}>Username:{" "}
-                            <TextInput
-                            />
-                        </Text>
-                        <Text style={styles.email}>Email: insert</Text>
-
                     </View>
                 </View>
             </View>
