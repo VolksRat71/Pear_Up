@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import firebase from 'firebase';
-import { View, StyleSheet, Text, TouchableOpacity, Platform } from 'react-native';
+import { View, StyleSheet, Text, Platform, TouchableOpacity } from 'react-native';
+
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { Avatar } from 'react-native-paper';
 
@@ -9,8 +10,6 @@ import Color from '../constants/Colors';
 
 const Profile = props => {
     const [profileImage, setProfileImage] = useState(firebase.auth().currentUser.photoURL)
-    const [profileName, setProfileName] = useState(firebase.auth().currentUser.displayName)
-    const [profileEmail, setProfileEmail] = useState(firebase.auth().currentUser.email)
 
     const user = firebase.auth().currentUser
 
@@ -30,8 +29,8 @@ const Profile = props => {
                     <Avatar.Image size={300} source={{ uri: profileImage }} />
                 </TouchableOpacity>
                 <View style={styles.profileData}>
-                    <Text style={styles.username}>{profileName}</Text>
-                    <Text style={styles.email}>{profileEmail}</Text>
+                    <Text style={styles.username}>{user.displayName}</Text>
+                    <Text style={styles.email}>{user.email}</Text>
                     <View style={styles.editButton}>
                         <TouchableOpacity
                             onPress={() => {

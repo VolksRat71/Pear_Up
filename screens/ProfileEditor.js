@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
-import { Avatar } from 'react-native-paper';
+import { Avatar, Button } from 'react-native-paper';
 import {
     StyleSheet, View,
     TouchableOpacity, ImageEditor,
@@ -131,6 +131,16 @@ const styles = StyleSheet.create({
     profileData: {
         alignItems: 'center',
     },
+    inline: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginHorizontal: 20,
+        alignItems: 'center',
+    },
+    inputs: {
+        borderWidth: 1,
+        borderBottomColor: "black"
+    }
 });
 
 export default ProfileEditor;
