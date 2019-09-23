@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import firebase from 'firebase';
 import { View, StyleSheet, Text, Platform, TouchableOpacity } from 'react-native';
+
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { Avatar } from 'react-native-paper';
 
@@ -12,8 +13,10 @@ const Profile = props => {
 
     const user = firebase.auth().currentUser
 
-    const profileHandler = () => {
-        setProfileImage(firebase.auth().currentUser.photoURL)
+    const profileHandler = async () => {
+        await setProfileImage(firebase.auth().currentUser.photoURL)
+        await setProfileName(firebase.auth().currentUser.displayName)
+        await setProfileEmail(firebase.auth().currentUser.email)
     }
 
     return (
@@ -79,7 +82,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     avatar: {
-        paddingBottom: 15,
+        paddingTop: 15,
     },
     username: {
         color: Color.accent1,
